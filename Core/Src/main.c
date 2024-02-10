@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <Application/gps_parser.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,8 +43,7 @@
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-#define GPS_BUFFER_SIZE 256
-uint8_t GPS_BUFFER[GPS_BUFFER_SIZE];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,12 +94,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  applicationMain(huart1);
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_UART_Receive (&huart1, GPS_BUFFER, GPS_BUFFER_SIZE, 500);
   }
   /* USER CODE END 3 */
 }
