@@ -1,0 +1,7 @@
+../App/gps_parser.cpp:6:6:bool GpsParser::isContaisValidData()	1
+../App/gps_parser.cpp:11:13:const char* GpsParser::getTimeUtc()	1
+../App/gps_parser.cpp:16:9:uint8_t GpsParser::getSatellitesNumber()	1
+../App/gps_parser.cpp:21:6:bool GpsParser::getIsReceivingData()	1
+../App/gps_parser.cpp:26:13:const char* GpsParser::getLocation()	1
+../App/gps_parser.cpp:37:6:void GpsParser::addData(uint8_t*, uint8_t)	4
+../App/gps_parser.cpp:59:6:void GpsParser::parseDataNmeaSentence()	20

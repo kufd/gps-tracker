@@ -1,0 +1,12 @@
+../LcdDriver/LCD_2inch4.cpp:36:13:void LCD_2IN4_Reset()	1
+../LcdDriver/LCD_2inch4.cpp:50:13:void LCD_2IN4_Write_Command(uint8_t)	1
+../LcdDriver/LCD_2inch4.cpp:57:13:void LCD_2IN4_WriteData_Byte(uint8_t)	1
+../LcdDriver/LCD_2inch4.cpp:65:6:void LCD_2IN4_WriteData_Word(uint16_t)	1
+../LcdDriver/LCD_2inch4.cpp:78:6:void LCD_2IN4_Init()	1
+../LcdDriver/LCD_2inch4.cpp:184:6:void LCD_2IN4_SetWindow(uint16_t, uint16_t, uint16_t, uint16_t)	1
+../LcdDriver/LCD_2inch4.cpp:208:6:void LCD_2IN4_SetCursor(uint16_t, uint16_t)	1
+../LcdDriver/LCD_2inch4.cpp:230:6:void LCD_2IN4_Clear(uint16_t)	3
+../LcdDriver/LCD_2inch4.cpp:252:6:void LCD_2IN4_ClearWindow(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	3
+../LcdDriver/LCD_2inch4.cpp:268:6:void LCD_2IN4_Display(uint8_t*)	3
+../LcdDriver/LCD_2inch4.cpp:288:6:void LCD_2IN4_DrawPaint(uint16_t, uint16_t, uint16_t)	1
+../LcdDriver/LCD_2inch4.cpp:299:6:void LCD_2IN4_SetBackLight(uint16_t)	1

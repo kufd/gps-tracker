@@ -1,0 +1,2 @@
+../App/gps_parser.h:6:7:GpsParser::GpsParser()	16	static
+../App/app.cpp:9:6:void applicationMain(UART_HandleTypeDef)	640	static

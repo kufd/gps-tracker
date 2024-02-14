@@ -1,0 +1,19 @@
+../LcdDriver/GUI_Paint.cpp:92:6:void Paint_NewImage(uint16_t, uint16_t, uint16_t, uint16_t)	24	static
+../LcdDriver/GUI_Paint.cpp:117:6:void Paint_SetClearFuntion(void (*)(uint16_t))	16	static
+../LcdDriver/GUI_Paint.cpp:126:6:void Paint_SetDisplayFuntion(void (*)(uint16_t, uint16_t, uint16_t))	16	static
+../LcdDriver/GUI_Paint.cpp:136:6:void Paint_SetRotate(uint16_t)	16	static
+../LcdDriver/GUI_Paint.cpp:152:6:void Paint_SetMirroring(uint8_t)	16	static
+../LcdDriver/GUI_Paint.cpp:172:6:void Paint_SetPixel(uint16_t, uint16_t, uint16_t)	24	static
+../LcdDriver/GUI_Paint.cpp:234:6:void Paint_Clear(uint16_t)	16	static
+../LcdDriver/GUI_Paint.cpp:247:6:void Paint_ClearWindows(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	32	static
+../LcdDriver/GUI_Paint.cpp:265:6:void Paint_DrawPoint(uint16_t, uint16_t, uint16_t, DOT_PIXEL, DOT_STYLE)	32	static
+../LcdDriver/GUI_Paint.cpp:301:6:void Paint_DrawLine(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, DOT_PIXEL, LINE_STYLE)	64	static
+../LcdDriver/GUI_Paint.cpp:358:6:void Paint_DrawRectangle(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, DOT_PIXEL, DRAW_FILL)	48	static
+../LcdDriver/GUI_Paint.cpp:390:6:void Paint_DrawCircle(uint16_t, uint16_t, uint16_t, uint16_t, DOT_PIXEL, DRAW_FILL)	40	static
+../LcdDriver/GUI_Paint.cpp:459:6:void Paint_DrawChar(uint16_t, uint16_t, char, sFONT*, uint16_t, uint16_t)	40	static
+../LcdDriver/GUI_Paint.cpp:508:6:void Paint_DrawString_EN(uint16_t, uint16_t, const char*, sFONT*, uint16_t, uint16_t)	40	static
+../LcdDriver/GUI_Paint.cpp:553:6:void Paint_DrawString_CN(uint16_t, uint16_t, const char*, cFONT*, uint16_t, uint16_t)	56	static
+../LcdDriver/GUI_Paint.cpp:648:6:void Paint_DrawNum(uint16_t, uint16_t, int32_t, sFONT*, uint16_t, uint16_t)	560	static
+../LcdDriver/GUI_Paint.cpp:687:6:void Paint_DrawFloatNum(uint16_t, uint16_t, double, uint8_t, sFONT*, uint16_t, uint16_t)	312	static
+../LcdDriver/GUI_Paint.cpp:713:6:void Paint_DrawTime(uint16_t, uint16_t, PAINT_TIME*, sFONT*, uint16_t, uint16_t)	48	static
+../LcdDriver/GUI_Paint.cpp:740:6:void Paint_DrawImage(const unsigned char*, uint16_t, uint16_t, uint16_t, uint16_t)	40	static

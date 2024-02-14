@@ -1,0 +1,4 @@
+../App/ui.cpp:4:6:void UI::init()	1
+../App/ui.cpp:25:6:void UI::refresh(GpsParser)	1
+../App/ui.cpp:31:6:void UI::printGpsData(GpsParser)	4
+../App/ui.cpp:58:6:void UI::printStorageData()	1

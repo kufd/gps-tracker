@@ -1,0 +1,4 @@
+../LcdDriver/DEV_Config.cpp:42:6:void DEV_delay_ms(uint16_t)	16	static
+../LcdDriver/DEV_Config.cpp:48:6:void DEV_SPI_WRite(uint8_t)	16	static
+../LcdDriver/DEV_Config.cpp:53:5:int DEV_Module_Init()	8	static
+../LcdDriver/DEV_Config.cpp:62:6:void DEV_Module_Exit()	8	static
