@@ -5,13 +5,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Application/gps_parser.cpp 
+../Application/app.cpp \
+../Application/gps_parser.cpp \
+../Application/ui.cpp 
 
 OBJS += \
-./Application/gps_parser.o 
+./Application/app.o \
+./Application/gps_parser.o \
+./Application/ui.o 
 
 CPP_DEPS += \
-./Application/gps_parser.d 
+./Application/app.d \
+./Application/gps_parser.d \
+./Application/ui.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +27,7 @@ Application/%.o Application/%.su Application/%.cyclo: ../Application/%.cpp Appli
 clean: clean-Application
 
 clean-Application:
-	-$(RM) ./Application/gps_parser.cyclo ./Application/gps_parser.d ./Application/gps_parser.o ./Application/gps_parser.su
+	-$(RM) ./Application/app.cyclo ./Application/app.d ./Application/app.o ./Application/app.su ./Application/gps_parser.cyclo ./Application/gps_parser.d ./Application/gps_parser.o ./Application/gps_parser.su ./Application/ui.cyclo ./Application/ui.d ./Application/ui.o ./Application/ui.su
 
 .PHONY: clean-Application
 

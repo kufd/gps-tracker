@@ -9,10 +9,11 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include LcdDriver/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
--include Application/subdir.mk
+-include App/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -86,7 +87,7 @@ main-build: GPS-tracker.elf secondary-outputs
 
 # Tool invocations
 GPS-tracker.elf GPS-tracker.map: $(OBJS) $(USER_OBJS) /home/kufd/STM32CubeIDE/workspace_1.14.0/GPS-tracker/STM32F407VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "GPS-tracker.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/kufd/STM32CubeIDE/workspace_1.14.0/GPS-tracker/STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS-tracker.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o "GPS-tracker.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/kufd/STM32CubeIDE/workspace_1.14.0/GPS-tracker/STM32F407VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPS-tracker.map" -Wl,--gc-sections -Wl,--verbose -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
