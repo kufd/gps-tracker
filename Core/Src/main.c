@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "fatfs.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -44,6 +45,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+SD_HandleTypeDef hsd;
+
 SPI_HandleTypeDef hspi1;
 
 TIM_HandleTypeDef htim3;
@@ -60,6 +63,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_SDIO_SD_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -100,6 +104,8 @@ int main(void)
   MX_USART1_UART_Init();
   MX_SPI1_Init();
   MX_TIM3_Init();
+  MX_SDIO_SD_Init();
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -108,24 +114,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   applicationMain(huart1);
-
-//	DEV_Module_Init();
-//	LCD_2IN_SetBackLight(100);
-//	LCD_2IN_Init();
-//	LCD_2IN_Clear(GREEN);
-//
-//	Paint_NewImage(LCD_2IN_WIDTH,LCD_2IN_HEIGHT, ROTATE_90, WHITE);
-//
-//	Paint_SetClearFuntion(LCD_2IN_Clear);
-//	Paint_SetDisplayFuntion(LCD_2IN_DrawPaint);
-//
-//	Paint_Clear(BLACK);
-//
-//	Paint_SetRotate(ROTATE_270);
-//	Paint_DrawString_EN (5, 10, "time:", &Font20, BLACK, YELLOW);
-//	Paint_DrawString_EN (5, 34, "loc.: ", &Font20, BLACK, YELLOW);
-//	Paint_DrawString_EN (5, 58, "sat.: ", &Font20, BLACK, YELLOW);
-//	Paint_DrawString_EN (5, 82, "storage: 10GB/1GB", &Font20, BLACK, YELLOW);
 
 
   while (1)
@@ -161,7 +149,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -180,6 +168,34 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief SDIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SDIO_SD_Init(void)
+{
+
+  /* USER CODE BEGIN SDIO_Init 0 */
+
+  /* USER CODE END SDIO_Init 0 */
+
+  /* USER CODE BEGIN SDIO_Init 1 */
+
+  /* USER CODE END SDIO_Init 1 */
+  hsd.Instance = SDIO;
+  hsd.Init.ClockEdge = SDIO_CLOCK_EDGE_RISING;
+  hsd.Init.ClockBypass = SDIO_CLOCK_BYPASS_DISABLE;
+  hsd.Init.ClockPowerSave = SDIO_CLOCK_POWER_SAVE_DISABLE;
+  hsd.Init.BusWide = SDIO_BUS_WIDE_1B;
+  hsd.Init.HardwareFlowControl = SDIO_HARDWARE_FLOW_CONTROL_DISABLE;
+  hsd.Init.ClockDiv = 0;
+  /* USER CODE BEGIN SDIO_Init 2 */
+
+  /* USER CODE END SDIO_Init 2 */
+
 }
 
 /**
@@ -317,6 +333,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */

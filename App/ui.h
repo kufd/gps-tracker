@@ -7,18 +7,21 @@
 #include "LcdDriver/GUI_Paint.h"
 #include "LcdDriver/fonts.h"
 #include "gps_parser.h"
+#include "storage.h"
 
-class UI
+class UI: public GpsDataChangeListener
 {
 	private:
 		uint8_t searchGpsProgressCounter = 0;
 	public:
 		void init();
-		void refresh(GpsParser gpsParser);
+		void printError(const char* error);
+		void onGpsDataChange(GpsParser*);
+		void refreshSearchGpsIndicator(GpsParser* gpsParser);
+		void refreshStorageData(Storage* storage);
+		void refreshGpsDataRecordingEnabledIndicator(bool gpsDataRecordingEnabled);
 	private:
-		void printGpsData(GpsParser gpsParser);
-		void printStorageData();
-
+		void printGpsData(GpsParser* gpsParser);
 };
 
 #endif /* __UI_H */

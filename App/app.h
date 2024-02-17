@@ -10,6 +10,7 @@ extern "C" {
 
 
 void applicationMain(UART_HandleTypeDef huart1);
+void applicationErrorHandler();
 
 
 

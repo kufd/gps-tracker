@@ -1,4 +1,7 @@
 ../App/ui.cpp:4:6:void UI::init()	1
-../App/ui.cpp:25:6:void UI::refresh(GpsParser)	1
-../App/ui.cpp:31:6:void UI::printGpsData(GpsParser)	4
-../App/ui.cpp:58:6:void UI::printStorageData()	1
+../App/ui.cpp:27:6:virtual void UI::onGpsDataChange(GpsParser*)	1
+../App/ui.cpp:32:6:void UI::printError(const char*)	1
+../App/ui.cpp:37:6:void UI::refreshGpsDataRecordingEnabledIndicator(bool)	2
+../App/ui.cpp:48:6:void UI::refreshSearchGpsIndicator(GpsParser*)	4
+../App/ui.cpp:65:6:void UI::printGpsData(GpsParser*)	1
+../App/ui.cpp:86:6:void UI::refreshStorageData(Storage*)	4

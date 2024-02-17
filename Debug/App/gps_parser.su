@@ -1,7 +1,11 @@
-../App/gps_parser.cpp:6:6:bool GpsParser::isContaisValidData()	16	static
-../App/gps_parser.cpp:11:13:const char* GpsParser::getTimeUtc()	16	static
-../App/gps_parser.cpp:16:9:uint8_t GpsParser::getSatellitesNumber()	16	static
-../App/gps_parser.cpp:21:6:bool GpsParser::getIsReceivingData()	16	static
-../App/gps_parser.cpp:26:13:const char* GpsParser::getLocation()	96	static
-../App/gps_parser.cpp:37:6:void GpsParser::addData(uint8_t*, uint8_t)	32	static
-../App/gps_parser.cpp:59:6:void GpsParser::parseDataNmeaSentence()	96	dynamic
+../App/gps_parser.cpp:7:6:bool GpsParser::isContaisValidData()	16	static
+../App/gps_parser.cpp:12:13:const char* GpsParser::getTimeUtc()	16	static
+../App/gps_parser.cpp:17:9:uint8_t GpsParser::getSatellitesNumber()	16	static
+../App/gps_parser.cpp:22:6:bool GpsParser::getIsReceivingData()	16	static
+../App/gps_parser.cpp:27:6:void GpsParser::addGpsDataChangeListener(GpsDataChangeListener*)	16	static
+../App/gps_parser.cpp:36:6:void GpsParser::getLocation(char*)	32	static
+../App/gps_parser.cpp:44:6:void GpsParser::getLongitude(char*)	24	static
+../App/gps_parser.cpp:51:6:void GpsParser::getLatitude(char*)	24	static
+../App/gps_parser.cpp:58:6:void GpsParser::addData(const char*)	24	static
+../App/gps_parser.cpp:83:6:void GpsParser::parseDataNmeaSentence(const char*)	80	dynamic
+../App/gps_parser.cpp:162:6:bool GpsParser::nmeaSentenceChecksumCompare(const char*)	24	static

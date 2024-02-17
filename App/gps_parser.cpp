@@ -1,3 +1,4 @@
+#include "logger.h"
 #include "gps_parser.h"
 #include <stdio.h>
 #include <string.h>
@@ -23,24 +24,46 @@ bool GpsParser::getIsReceivingData()
 	return isReceivingData;
 }
 
-const char* GpsParser::getLocation()
+void GpsParser::addGpsDataChangeListener(GpsDataChangeListener* gpsDataChangeListener)
 {
-	char location[latitudeAndLongitudeMaxSize*2+2+10]; //TODO is it bad return this variable outside????
+	if (this->numberGpsDataChangeListeners == GpsParser::maxGpsDataChangeListeners) {
+		throw "reached max number of gpsDataChangeListeners";
+	}
+
+	this->gpsDataChangeListeners[this->numberGpsDataChangeListeners++] = gpsDataChangeListener;
+}
+
+void GpsParser::getLocation(char* location)
+{
 	char longitudeEorWString[2] = {longitudeEorW, 0};
 	char latitudeNorSString[2] = {latitudeNorS, 0};
 
 	sprintf(location, "%s%s,%s%s", longitude, longitudeEorWString, latitude, latitudeNorSString);
-
-	return "4532583";
 }
 
-void GpsParser::addData(uint8_t *data, uint8_t size)
+void GpsParser::getLongitude(char* longitude)
 {
-	for (int i = 0; i < size; i++)
+	char longitudeEorWString[2] = {longitudeEorW, 0};
+
+	sprintf(longitude, "%s%s", this->longitude, longitudeEorWString);
+}
+
+void GpsParser::getLatitude(char* latitude)
+{
+	char latitudeNorSString[2] = {latitudeNorS, 0};
+
+	sprintf(latitude, "%s%s", this->latitude, latitudeNorSString);
+}
+
+void GpsParser::addData(const char* data)
+{
+	for (size_t i = 0; i < strlen(data); i++)
 	{
 		if (data[i] == '$') {
 			isReceivingData = true;
-			parseDataNmeaSentence();
+
+			parseDataNmeaSentence(buffer);
+
 			bufferSize = 0;
 			memset(buffer, 0, maxBufferSize);
 		}
@@ -51,23 +74,27 @@ void GpsParser::addData(uint8_t *data, uint8_t size)
 		//buffer overflow should not happen. If will then clear buffer
 		if (bufferSize >= maxBufferSize) {
 			bufferSize = 0;
+			memset(buffer, 0, maxBufferSize);
 		}
 	}
 }
 
 
-void GpsParser::parseDataNmeaSentence()
+void GpsParser::parseDataNmeaSentence(const char* nmeaSentence)
 {
+	if (!nmeaSentenceChecksumCompare(buffer)) {
+		logger.debug("NMEA sentence received with invalid checksum", buffer);
+		return;
+	}
+
+	logger.debug("NMEA sentence received", buffer);
+
 	char nmeaSentenceName[7] = {0, 0, 0, 0, 0, 0, 0};
-	strncpy(nmeaSentenceName, (const char *)buffer, 6);
+	strncpy(nmeaSentenceName, nmeaSentence, 6);
 
 	if (strcmp(nmeaSentenceName, "$GPGGA") == 0)
 	{
-		char parseBuffer[bufferSize + 1];
-		strncpy(parseBuffer, (const char *)buffer, bufferSize);
-		parseBuffer[bufferSize] = '\0';
-
-		char* parseBufferStart = parseBuffer;
+		const char* parseBufferStart = nmeaSentence;
 		uint8_t nmeaSentenceSectionNumber = 0;
 
 		while (1)
@@ -87,7 +114,7 @@ void GpsParser::parseDataNmeaSentence()
 				strncpy((this->timeUtc+5), ":", 2);
 				strncpy((this->timeUtc+6), nmeaSentenceSection+4, 2);
 			}
-			if (nmeaSentenceSectionNumber == 2 && nmeaSentenceSectionLen > 0 && nmeaSentenceSectionLen < latitudeAndLongitudeMaxSize)
+			if (nmeaSentenceSectionNumber == 2 && nmeaSentenceSectionLen > 0 && nmeaSentenceSectionLen < this->latitudeAndLongitudeMaxSize)
 			{
 				strncpy(this->latitude, nmeaSentenceSection, nmeaSentenceSectionLen);
 			}
@@ -95,7 +122,7 @@ void GpsParser::parseDataNmeaSentence()
 			{
 				this->latitudeNorS = nmeaSentenceSection[0];
 			}
-			if (nmeaSentenceSectionNumber == 4 && nmeaSentenceSectionLen > 0 && nmeaSentenceSectionLen < latitudeAndLongitudeMaxSize)
+			if (nmeaSentenceSectionNumber == 4 && nmeaSentenceSectionLen > 0 && nmeaSentenceSectionLen < this->latitudeAndLongitudeMaxSize)
 			{
 				strncpy(this->longitude, nmeaSentenceSection, nmeaSentenceSectionLen);
 			}
@@ -105,11 +132,14 @@ void GpsParser::parseDataNmeaSentence()
 			}
 			if (nmeaSentenceSectionNumber == 6 && nmeaSentenceSectionLen > 0)
 			{
-				fixQuality = atoi(nmeaSentenceSection);
+				this->fixQuality = atoi(nmeaSentenceSection);
 			}
 			if (nmeaSentenceSectionNumber == 7 && nmeaSentenceSectionLen > 0)
 			{
-				satellitesNumber = atoi(nmeaSentenceSection);
+				this->satellitesNumber = atoi(nmeaSentenceSection);
+				if (this->satellitesNumber > 10) {
+					this->satellitesNumber = atoi(nmeaSentenceSection);
+				}
 			}
 
 			if (delimiterPosition == NULL)
@@ -120,7 +150,34 @@ void GpsParser::parseDataNmeaSentence()
 			nmeaSentenceSectionNumber++;
 			parseBufferStart += nmeaSentenceSectionLen + 1;
 		}
+
+		if (isContaisValidData()) {
+			for (int i = 0; i < this->numberGpsDataChangeListeners; i++) {
+				this->gpsDataChangeListeners[i]->onGpsDataChange(this);
+			}
+		}
 	}
+}
+
+bool GpsParser::nmeaSentenceChecksumCompare(const char* nmeaSentence)
+{
+	uint8_t nmeaSentenceLen = strlen(nmeaSentence);
+	uint8_t calculatedChecksum = 0;
+
+	if (nmeaSentenceLen < 10)
+	{
+		return false;
+	}
+
+	for(uint8_t i = 1; i < nmeaSentenceLen-5; ++i) //Loop from 1 to nmeaSentenceLen-5 because the checksum is calculated between $ and *
+	{
+		calculatedChecksum = calculatedChecksum^nmeaSentence[i];
+	}
+
+	char receivedChecksumStr[3] = {nmeaSentence[nmeaSentenceLen-4], nmeaSentence[nmeaSentenceLen-3], '\0'};
+	uint8_t receivedChecksum = (uint8_t)strtol(receivedChecksumStr, NULL, 16);
+
+	return calculatedChecksum == receivedChecksum;
 }
 
 
