@@ -9,21 +9,24 @@ CPP_SRCS += \
 ../App/gps_parser.cpp \
 ../App/logger.cpp \
 ../App/storage.cpp \
-../App/ui.cpp 
+../App/ui.cpp \
+../App/wifi.cpp 
 
 OBJS += \
 ./App/app.o \
 ./App/gps_parser.o \
 ./App/logger.o \
 ./App/storage.o \
-./App/ui.o 
+./App/ui.o \
+./App/wifi.o 
 
 CPP_DEPS += \
 ./App/app.d \
 ./App/gps_parser.d \
 ./App/logger.d \
 ./App/storage.d \
-./App/ui.d 
+./App/ui.d \
+./App/wifi.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -33,7 +36,7 @@ App/%.o App/%.su App/%.cyclo: ../App/%.cpp App/subdir.mk
 clean: clean-App
 
 clean-App:
-	-$(RM) ./App/app.cyclo ./App/app.d ./App/app.o ./App/app.su ./App/gps_parser.cyclo ./App/gps_parser.d ./App/gps_parser.o ./App/gps_parser.su ./App/logger.cyclo ./App/logger.d ./App/logger.o ./App/logger.su ./App/storage.cyclo ./App/storage.d ./App/storage.o ./App/storage.su ./App/ui.cyclo ./App/ui.d ./App/ui.o ./App/ui.su
+	-$(RM) ./App/app.cyclo ./App/app.d ./App/app.o ./App/app.su ./App/gps_parser.cyclo ./App/gps_parser.d ./App/gps_parser.o ./App/gps_parser.su ./App/logger.cyclo ./App/logger.d ./App/logger.o ./App/logger.su ./App/storage.cyclo ./App/storage.d ./App/storage.o ./App/storage.su ./App/ui.cyclo ./App/ui.d ./App/ui.o ./App/ui.su ./App/wifi.cyclo ./App/wifi.d ./App/wifi.o ./App/wifi.su
 
 .PHONY: clean-App
 

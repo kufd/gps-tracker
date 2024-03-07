@@ -4,19 +4,128 @@
 #include <string.h>
 #include <stdlib.h>
 
-bool GpsParser::isContaisValidData()
+bool GpsData::isValid()
 {
-	return fixQuality > 0;
+	return strlen(timeUtc) > 0
+		&& strlen(dateUtc) > 0
+		&& latitude < initialCoordinatesValue
+		&& latitudeNorS != '\0'
+		&& longitude < initialCoordinatesValue
+		&& longitudeEorW != '\0'
+		&& positionStatus == positionStatusValid;
+}
+void GpsData::parseTimeUtc(char* nmeaSentenceSection)
+{
+	if (strlen(nmeaSentenceSection) < 8)
+	{
+		return;
+	}
+
+	strncpy(timeUtc, nmeaSentenceSection, 2);
+	strncpy((timeUtc+2), ":", 1);
+	strncpy((timeUtc+3), nmeaSentenceSection+2, 2);
+	strncpy((timeUtc+5), ":", 1);
+	strncpy((timeUtc+6), nmeaSentenceSection+4, 2);
+	timeUtc[8] = '\0';
+}
+void GpsData::parseDateUtc(char* nmeaSentenceSection)
+{
+	if (strlen(nmeaSentenceSection) != 6)
+	{
+		return;
+	}
+
+	strncpy(dateUtc, "20", 2);
+	strncpy(dateUtc+2, nmeaSentenceSection+4, 2);
+	strncpy((dateUtc+4), "-", 1);
+	strncpy((dateUtc+5), nmeaSentenceSection+2, 2);
+	strncpy((dateUtc+7), "-", 1);
+	strncpy((dateUtc+8), nmeaSentenceSection, 2);
+	dateUtc[10] = '\0';
+}
+void GpsData::parseLatitude(char* nmeaSentenceSection)
+{
+	size_t nmeaSentenceSectionLen = strlen(nmeaSentenceSection);
+
+	if (nmeaSentenceSectionLen <= 4 || nmeaSentenceSectionLen > latitudeAndLongitudeMaxSize)
+	{
+		return;
+	}
+
+	char buffer[latitudeAndLongitudeMaxSize+1] = "";
+	strncpy(buffer, nmeaSentenceSection, 2);
+	double degree = atof(buffer);
+
+	strncpy(buffer, nmeaSentenceSection+2, nmeaSentenceSectionLen-2);
+	double minutes = atof(buffer);
+
+	latitude = degree + minutes/60;
+}
+void GpsData::parseLatitudeNorS(char* nmeaSentenceSection)
+{
+	if (strlen(nmeaSentenceSection) != 1)
+	{
+		return;
+	}
+
+	latitudeNorS = nmeaSentenceSection[0];
+}
+void GpsData::parseLongitude(char* nmeaSentenceSection)
+{
+	size_t nmeaSentenceSectionLen = strlen(nmeaSentenceSection);
+
+	if (nmeaSentenceSectionLen <= 5 || nmeaSentenceSectionLen > latitudeAndLongitudeMaxSize)
+	{
+		return;
+	}
+
+	char buffer[GpsData::latitudeAndLongitudeMaxSize+1] = "";
+	strncpy(buffer, nmeaSentenceSection, 3);
+	double degree = atof(buffer);
+
+	strncpy(buffer, nmeaSentenceSection+3, nmeaSentenceSectionLen-2);
+	double minutes = atof(buffer);
+
+	longitude = degree + minutes/60;
+}
+void GpsData::parseLongitudeEorW(char* nmeaSentenceSection)
+{
+	if (strlen(nmeaSentenceSection) != 1)
+	{
+		return;
+	}
+
+	longitudeEorW = nmeaSentenceSection[0];
+}
+void GpsData::parsePositionStatus(char* nmeaSentenceSection)
+{
+	if (strlen(nmeaSentenceSection) != 1)
+	{
+		return;
+	}
+
+	positionStatus = nmeaSentenceSection[0];
 }
 
-const char* GpsParser::getTimeUtc()
-{
-	return timeUtc;
-}
 
-uint8_t GpsParser::getSatellitesNumber()
+
+GpsStatus GpsParser::getGpsStatus()
 {
-	return satellitesNumber;
+	if (isReceivingValidData)
+	{
+		return GpsStatus::VALID_DATA;
+	}
+
+	if (!isReceivingData)
+	{
+		return GpsStatus::NO_DATA;
+	}
+
+	return GpsStatus::INVALID_DATA;
+}
+bool GpsParser::getIsReceivingValidData()
+{
+	return isReceivingValidData;
 }
 
 bool GpsParser::getIsReceivingData()
@@ -31,28 +140,6 @@ void GpsParser::addGpsDataChangeListener(GpsDataChangeListener* gpsDataChangeLis
 	}
 
 	this->gpsDataChangeListeners[this->numberGpsDataChangeListeners++] = gpsDataChangeListener;
-}
-
-void GpsParser::getLocation(char* location)
-{
-	char longitudeEorWString[2] = {longitudeEorW, 0};
-	char latitudeNorSString[2] = {latitudeNorS, 0};
-
-	sprintf(location, "%s%s,%s%s", longitude, longitudeEorWString, latitude, latitudeNorSString);
-}
-
-void GpsParser::getLongitude(char* longitude)
-{
-	char longitudeEorWString[2] = {longitudeEorW, 0};
-
-	sprintf(longitude, "%s%s", this->longitude, longitudeEorWString);
-}
-
-void GpsParser::getLatitude(char* latitude)
-{
-	char latitudeNorSString[2] = {latitudeNorS, 0};
-
-	sprintf(latitude, "%s%s", this->latitude, latitudeNorSString);
 }
 
 void GpsParser::addData(const char* data)
@@ -75,6 +162,8 @@ void GpsParser::addData(const char* data)
 		if (bufferSize >= maxBufferSize) {
 			bufferSize = 0;
 			memset(buffer, 0, maxBufferSize);
+
+			logger.debug("Happened buffer overflow in GpsParser");
 		}
 	}
 }
@@ -82,6 +171,7 @@ void GpsParser::addData(const char* data)
 
 void GpsParser::parseDataNmeaSentence(const char* nmeaSentence)
 {
+	//TODO add valid sentences percent calculation and log it
 	if (!nmeaSentenceChecksumCompare(buffer)) {
 		logger.debug("NMEA sentence received with invalid checksum", buffer);
 		return;
@@ -92,55 +182,46 @@ void GpsParser::parseDataNmeaSentence(const char* nmeaSentence)
 	char nmeaSentenceName[7] = {0, 0, 0, 0, 0, 0, 0};
 	strncpy(nmeaSentenceName, nmeaSentence, 6);
 
-	if (strcmp(nmeaSentenceName, "$GPGGA") == 0)
+	//https://docs.novatel.com/OEM7/Content/Logs/GPRMC.htm
+	if (strcmp(nmeaSentenceName, "$GPRMC") == 0)
 	{
-		const char* parseBufferStart = nmeaSentence;
+		GpsData gpsData;
+		const char* nmeaSentenceCursor = nmeaSentence;
 		uint8_t nmeaSentenceSectionNumber = 0;
 
 		while (1)
 		{
-			char* delimiterPosition = strchr(parseBufferStart, ',');
+			char* delimiterPosition = strchr(nmeaSentenceCursor, ',');
 
-			const size_t nmeaSentenceSectionLen = delimiterPosition != NULL ? delimiterPosition - parseBufferStart : strlen(parseBufferStart);
+			const size_t nmeaSentenceSectionLen = delimiterPosition != NULL ? delimiterPosition - nmeaSentenceCursor : strlen(nmeaSentenceCursor);
 			char nmeaSentenceSection[nmeaSentenceSectionLen+1];
 			nmeaSentenceSection[nmeaSentenceSectionLen] = '\0';
-			memcpy(nmeaSentenceSection, parseBufferStart, nmeaSentenceSectionLen);
+			memcpy(nmeaSentenceSection, nmeaSentenceCursor, nmeaSentenceSectionLen);
 
-			if (nmeaSentenceSectionNumber == 1 && nmeaSentenceSectionLen >= 8)
-			{
-				strncpy(this->timeUtc, nmeaSentenceSection, 2);
-				strncpy((this->timeUtc+2), ":", 2);
-				strncpy((this->timeUtc+3), nmeaSentenceSection+2, 2);
-				strncpy((this->timeUtc+5), ":", 2);
-				strncpy((this->timeUtc+6), nmeaSentenceSection+4, 2);
+			switch(nmeaSentenceSectionNumber) {
+				case 1:
+					gpsData.parseTimeUtc(nmeaSentenceSection);
+				break;
+				case 2:
+					gpsData.parsePositionStatus(nmeaSentenceSection);
+				break;
+				case 3:
+					gpsData.parseLatitude(nmeaSentenceSection);
+				break;
+				case 4:
+					gpsData.parseLatitudeNorS(nmeaSentenceSection);
+				break;
+				case 5:
+					gpsData.parseLongitude(nmeaSentenceSection);
+				break;
+				case 6:
+					gpsData.parseLongitudeEorW(nmeaSentenceSection);
+				break;
+				case 9:
+					gpsData.parseDateUtc(nmeaSentenceSection);
+				break;
 			}
-			if (nmeaSentenceSectionNumber == 2 && nmeaSentenceSectionLen > 0 && nmeaSentenceSectionLen < this->latitudeAndLongitudeMaxSize)
-			{
-				strncpy(this->latitude, nmeaSentenceSection, nmeaSentenceSectionLen);
-			}
-			if (nmeaSentenceSectionNumber == 3 && nmeaSentenceSectionLen == 1)
-			{
-				this->latitudeNorS = nmeaSentenceSection[0];
-			}
-			if (nmeaSentenceSectionNumber == 4 && nmeaSentenceSectionLen > 0 && nmeaSentenceSectionLen < this->latitudeAndLongitudeMaxSize)
-			{
-				strncpy(this->longitude, nmeaSentenceSection, nmeaSentenceSectionLen);
-			}
-			if (nmeaSentenceSectionNumber == 5 && nmeaSentenceSectionLen == 1)
-			{
-				this->longitudeEorW = nmeaSentenceSection[0];
-			}
-			if (nmeaSentenceSectionNumber == 6 && nmeaSentenceSectionLen > 0)
-			{
-				this->fixQuality = atoi(nmeaSentenceSection);
-			}
-			if (nmeaSentenceSectionNumber == 7 && nmeaSentenceSectionLen > 0)
-			{
-				this->satellitesNumber = atoi(nmeaSentenceSection);
-				if (this->satellitesNumber > 10) {
-					this->satellitesNumber = atoi(nmeaSentenceSection);
-				}
-			}
+
 
 			if (delimiterPosition == NULL)
 			{
@@ -148,13 +229,19 @@ void GpsParser::parseDataNmeaSentence(const char* nmeaSentence)
 			}
 
 			nmeaSentenceSectionNumber++;
-			parseBufferStart += nmeaSentenceSectionLen + 1;
+			nmeaSentenceCursor += nmeaSentenceSectionLen + 1;
 		}
 
-		if (isContaisValidData()) {
+		if (gpsData.isValid()) {
+			isReceivingValidData = true;
+
 			for (int i = 0; i < this->numberGpsDataChangeListeners; i++) {
-				this->gpsDataChangeListeners[i]->onGpsDataChange(this);
+				this->gpsDataChangeListeners[i]->onGpsDataChange(&gpsData);
 			}
+		}
+		else
+		{
+			isReceivingValidData = false;
 		}
 	}
 }

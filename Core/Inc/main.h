@@ -59,6 +59,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define BTN_MOVE_Pin GPIO_PIN_2
+#define BTN_MOVE_GPIO_Port GPIOE
+#define BTN_SELECT_Pin GPIO_PIN_3
+#define BTN_SELECT_GPIO_Port GPIOE
+#define WIFI_TX_Pin GPIO_PIN_2
+#define WIFI_TX_GPIO_Port GPIOA
+#define WIFI_RX_Pin GPIO_PIN_3
+#define WIFI_RX_GPIO_Port GPIOA
 #define GPS_TX_Pin GPIO_PIN_9
 #define GPS_TX_GPIO_Port GPIOA
 #define GPS_RX_Pin GPIO_PIN_10

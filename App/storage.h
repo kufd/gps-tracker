@@ -2,33 +2,24 @@
 #define __STORAGE_H
 
 #include "main.h"
+#include <functional>
 #include "fatfs.h"
 
 class Storage
 {
-	private:
-		char dataFileName[9] = "data.csv";
-		char logFileName[8] = "app.log";
-		FIL dataFile;
-		FIL logFile;
-		uint8_t writeDataCounter = 0;
-		uint8_t writeLogCounter = 0;
-		uint64_t totalMBytes = 0;
-		uint64_t freeMBytes = 0;
-		uint64_t usedMBytes = 0;
-
-		void refreshStorageStatus();
 	public:
-		void open();
-		void close();
-		void writeData(const char* data);
-		void writeLog(const char* data);
-		uint32_t getTotalMBytes();
-		uint32_t getFreeMBytes();
-		uint32_t getUsedMBytes();
-		uint32_t getTotalGBytes();
-		uint32_t getFreeGBytes();
-		uint32_t getUsedGBytes();
+		constexpr static uint8_t maxFileNameLen = 30;
+		constexpr static uint8_t maxRecordNameLen = 20;
+	private:
+		char gpsDataFileName[maxFileNameLen+1] = "";
+		FIL gpsDataFile;
+		uint8_t writeGpsDataCounter = 0;
+	public:
+		void writeGpsData(const char* data);
+		void openGpsDateStorage(const char* gpsDataFileName);
+		void closeGpsDateStorage();
+		bool findRecordToSync(char* recordName);
+		void syncRecord(const char* recordName, std::function<void(const char* packet, uint32_t totalBytes, uint32_t progressBytes)> sendPacketToRemoteFunc);
 };
 
 #endif /* __STORAGE_H */

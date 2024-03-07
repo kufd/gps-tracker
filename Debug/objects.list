@@ -3,6 +3,7 @@
 "./App/logger.o"
 "./App/storage.o"
 "./App/ui.o"
+"./App/wifi.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f4xx_hal_msp.o"
 "./Core/Src/stm32f4xx_it.o"
@@ -44,4 +45,5 @@
 "./Middlewares/Third_Party/FatFs/src/diskio.o"
 "./Middlewares/Third_Party/FatFs/src/ff.o"
 "./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o"
+"./Middlewares/Third_Party/FatFs/src/option/ccsbcs.o"
 "./Middlewares/Third_Party/FatFs/src/option/syscall.o"

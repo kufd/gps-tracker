@@ -1,11 +1,29 @@
-../App/storage.cpp:5:6:void Storage::refreshStorageStatus()	104	static
-../App/storage.cpp:26:10:uint32_t Storage::getTotalMBytes()	16	static
-../App/storage.cpp:31:10:uint32_t Storage::getFreeMBytes()	16	static
-../App/storage.cpp:36:10:uint32_t Storage::getUsedMBytes()	16	static
-../App/storage.cpp:41:10:uint32_t Storage::getTotalGBytes()	16	static
-../App/storage.cpp:46:10:uint32_t Storage::getFreeGBytes()	16	static
-../App/storage.cpp:51:10:uint32_t Storage::getUsedGBytes()	16	static
-../App/storage.cpp:56:7:void Storage::open()	24	static
-../App/storage.cpp:86:7:void Storage::close()	24	static
-../App/storage.cpp:107:6:void Storage::writeData(const char*)	32	static
-../App/storage.cpp:129:6:void Storage::writeLog(const char*)	32	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:241:5:std::_Function_base::~_Function_base()	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:247:10:bool std::_Function_base::_M_empty() const	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:334:11:std::function<void(const char*, long unsigned int, long unsigned int)>::~function()	16	static
+../App/storage.cpp:29:3:RecordSynchronizer::RecordSynchronizer(const char*, std::function<void(const char*, long unsigned int, long unsigned int)>)	32	static
+../App/storage.cpp:53:3:RecordSynchronizer::~RecordSynchronizer()	72	static
+../App/storage.cpp:81:8:void RecordSynchronizer::syncRecord()	64	dynamic
+../App/storage.cpp:139:8:void RecordSynchronizer::readSyncProgressFromSyncLog()	120	dynamic
+../App/storage.cpp:220:8:void RecordSynchronizer::sendRecordPackage(const char*)	56	dynamic
+../App/storage.cpp:235:8:void RecordSynchronizer::saveSyncProgress()	88	static
+../App/storage.cpp:255:7:void Storage::openGpsDateStorage(const char*)	24	static
+../App/storage.cpp:271:7:void Storage::closeGpsDateStorage()	24	static
+../App/storage.cpp:281:6:void Storage::writeGpsData(const char*)	32	static
+../App/storage.cpp:301:6:void Storage::syncRecord(const char*, std::function<void(const char*, long unsigned int, long unsigned int)>)	9656	static
+../App/storage.cpp:310:6:bool Storage::findRecordToSync(char*)	72	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:239:5:constexpr std::_Function_base::_Function_base()	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:368:7:)>::function() [with _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:469:7:)>&) [with _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	32	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:586:7:) const [with _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	40	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:386:7:)>&) [with _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:555:12:)>&) [with _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/move.h:77:5:constexpr _Tp&& std::forward(typename std::remove_reference<_Tp>::type&) [with _Tp = const char*]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/move.h:77:5:constexpr _Tp&& std::forward(typename std::remove_reference<_Tp>::type&) [with _Tp = long unsigned int]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:572:16:)>::operator bool() const [with _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/move.h:104:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&&) [with _Tp = std::_Any_data&]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/move.h:196:5:std::_Require<std::__not_<std::__is_tuple_like<_Tp> >, std::is_move_constructible<_Tp>, std::is_move_assignable<_Tp> > std::swap(_Tp&, _Tp&) [with _Tp = std::_Any_data]	24	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/move.h:104:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&&) [with _Tp = bool (*&)(std::_Any_data&, const std::_Any_data&, std::_Manager_operation)]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/move.h:196:5:std::_Require<std::__not_<std::__is_tuple_like<_Tp> >, std::is_move_constructible<_Tp>, std::is_move_assignable<_Tp> > std::swap(_Tp&, _Tp&) [with _Tp = bool (*)(std::_Any_data&, const std::_Any_data&, std::_Manager_operation)]	24	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/move.h:104:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&&) [with _Tp = void (*&)(const std::_Any_data&, const char*&&, long unsigned int&&, long unsigned int&&)]	16	static
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/move.h:196:5:std::_Require<std::__not_<std::__is_tuple_like<_Tp> >, std::is_move_constructible<_Tp>, std::is_move_assignable<_Tp> > std::swap(_Tp&, _Tp&) [with _Tp = void (*)(const std::_Any_data&, const char*&&, long unsigned int&&, long unsigned int&&)]	24	static

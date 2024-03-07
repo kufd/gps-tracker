@@ -1,8 +1,9 @@
-../App/logger.cpp:5:1:Logger::Logger(Storage*)	16	static
-../App/logger.cpp:10:6:void Logger::error(const char*)	16	static
-../App/logger.cpp:15:6:void Logger::error(const char*, const char*)	24	static
-../App/logger.cpp:20:6:void Logger::debug(const char*)	16	static
-../App/logger.cpp:25:6:void Logger::debug(const char*, const char*)	24	static
-../App/logger.cpp:30:6:void Logger::info(const char*)	16	static
-../App/logger.cpp:35:6:void Logger::info(const char*, const char*)	24	static
-../App/logger.cpp:40:6:void Logger::write(const char*, const char*, const char*)	72	dynamic
+../App/logger.cpp:6:6:void Logger::openFile()	24	static
+../App/logger.cpp:15:6:void Logger::closeFile()	24	static
+../App/logger.cpp:24:6:void Logger::error(const char*)	16	static
+../App/logger.cpp:29:6:void Logger::error(const char*, const char*)	24	static
+../App/logger.cpp:34:6:void Logger::debug(const char*)	16	static
+../App/logger.cpp:39:6:void Logger::debug(const char*, const char*)	24	static
+../App/logger.cpp:44:6:void Logger::info(const char*)	16	static
+../App/logger.cpp:49:6:void Logger::info(const char*, const char*)	24	static
+../App/logger.cpp:54:6:void Logger::write(const char*, const char*, const char*)	40	static

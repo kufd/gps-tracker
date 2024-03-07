@@ -1,14 +1,17 @@
 #ifndef __LOGGER_H
 #define __LOGGER_H
 
-#include "storage.h"
+#include "fatfs.h"
 
 class Logger
 {
 	private:
-		Storage* storage;
+		char logFileName[8] = "app.log";
+		FIL logFile;
+		uint8_t writeLogCounter = 0;
 	public:
-		Logger(Storage* storage);
+		void openFile();
+		void closeFile();
 		void error(const char* message);
 		void error(const char* message, const char* contex);
 		void debug(const char* message);

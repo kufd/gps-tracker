@@ -1,10 +1,24 @@
 #include <App/logger.h>
 #include <string.h>
 #include <stdio.h>
+#include "fatfs.h"
 
-Logger::Logger(Storage* storage)
+void Logger::openFile()
 {
-	this->storage = storage;
+	FRESULT res = f_open(&logFile, logFileName, FA_OPEN_APPEND | FA_WRITE);
+	if(res != FR_OK)
+	{
+		throw "Cannot open storage log file";
+	}
+}
+
+void Logger::closeFile()
+{
+	FRESULT res = f_close(&logFile);
+	if(res != FR_OK)
+	{
+		throw "Cannot close storage log file";
+	}
 }
 
 void Logger::error(const char* message)
@@ -39,9 +53,19 @@ void Logger::info(const char* message, const char* context)
 
 void Logger::write(const char* level, const char* message, const char* context)
 {
-	size_t logSize = strlen(message) + strlen(context) + 20;
-	char preparedLog[logSize];
-	sprintf(preparedLog, "%s - %s - %s\n", level, message, context);
+	int bytesWritten = f_printf(&logFile, "%s - %s - %s\n", level, message, context);
 
-	storage->writeLog(preparedLog);
+	if(bytesWritten <= 0)
+	{
+		throw "Cannot write log to storage";
+	}
+
+	if(++writeLogCounter % 10 == 0)
+	{
+		FRESULT res = f_sync(&logFile);
+		if(res != FR_OK)
+		{
+			throw "Cannot sync log file to SD Card";
+		}
+	}
 }

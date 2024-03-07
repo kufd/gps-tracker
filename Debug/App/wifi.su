@@ -1,0 +1,15 @@
+../App/wifi.cpp:13:3:ResponserWaiter::ResponserWaiter(const char*)	16	static
+../App/wifi.cpp:22:8:bool ResponserWaiter::addChar(char)	16	static
+../App/wifi.cpp:43:1:HttpResponse::~HttpResponse()	16	static
+../App/wifi.cpp:51:5:int HttpResponse::getResponseStatus()	24	static
+../App/wifi.cpp:65:6:bool HttpResponse::isComplete()	16	static
+../App/wifi.cpp:70:6:bool HttpResponse::isValid()	16	static
+../App/wifi.cpp:85:6:void HttpResponse::readChar(char)	16	static
+../App/wifi.cpp:133:6:void Wifi::onReceivedDataFromHuart(const char*, size_t)	32	static
+../App/wifi.cpp:153:6:void Wifi::resetCircleBuffer()	16	static
+../App/wifi.cpp:159:6:void Wifi::init(UART_HandleTypeDef*, const char*, const char*)	104	static
+../App/wifi.cpp:207:6:bool Wifi::waitFor(const char*)	152	static
+../App/wifi.h:6:7:HttpResponse::HttpResponse()	16	static
+../App/wifi.cpp:238:6:bool Wifi::sendPost(const char*)	448	static
+../App/wifi.cpp:299:6:void Wifi::readHttpResponse(HttpResponse&)	24	static
+../App/wifi.cpp:332:6:void Wifi::writeToUart(const char*)	32	static
