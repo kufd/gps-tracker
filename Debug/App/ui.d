@@ -33,7 +33,16 @@ App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
  .././LcdDriver/LCD_2inch.h .././LcdDriver/DEV_Config.h \
  .././LcdDriver/Debug.h .././LcdDriver/DEV_Config.h \
  .././LcdDriver/GUI_Paint.h .././LcdDriver/fonts.h .././LcdDriver/fonts.h \
- ../App/gps_parser.h ../App/sdcard_status.h
+ ../App/gps_parser.h ../App/sdcard_status.h ../App/app.class.h \
+ ../App/logger.h ../FATFS/App/fatfs.h \
+ ../Middlewares/Third_Party/FatFs/src/ff.h \
+ ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
+ ../FATFS/Target/bsp_driver_sd.h \
+ ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
+ ../Middlewares/Third_Party/FatFs/src/diskio.h \
+ ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/sd_diskio.h \
+ ../App/app.h ../App/storage.h ../App/wifi.h \
+ ../App/circular_buffer.class.h ../App/config.class.h
 ../App/ui.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -76,3 +85,19 @@ App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
 .././LcdDriver/fonts.h:
 ../App/gps_parser.h:
 ../App/sdcard_status.h:
+../App/app.class.h:
+../App/logger.h:
+../FATFS/App/fatfs.h:
+../Middlewares/Third_Party/FatFs/src/ff.h:
+../Middlewares/Third_Party/FatFs/src/integer.h:
+../FATFS/Target/ffconf.h:
+../FATFS/Target/bsp_driver_sd.h:
+../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h:
+../Middlewares/Third_Party/FatFs/src/diskio.h:
+../Middlewares/Third_Party/FatFs/src/ff.h:
+../FATFS/Target/sd_diskio.h:
+../App/app.h:
+../App/storage.h:
+../App/wifi.h:
+../App/circular_buffer.class.h:
+../App/config.class.h:

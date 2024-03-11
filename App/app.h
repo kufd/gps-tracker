@@ -13,7 +13,6 @@ void applicationMain(UART_HandleTypeDef* huart1, UART_HandleTypeDef* huart2, DMA
 void applicationErrorHandler();
 
 
-
 #ifdef __cplusplus
 }
 #endif

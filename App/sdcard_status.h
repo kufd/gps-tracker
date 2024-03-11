@@ -50,6 +50,36 @@ struct SDCardStatus
 		{
 			return usedMBytes/1024;
 		}
+
+		void getTotal(char* total)
+		{
+			if (this->getTotalGBytes() > 0) {
+				sprintf(total, "%ld%s", this->getTotalGBytes(), "G");
+				return;
+			}
+
+			sprintf(total, "%ld%s", this->getTotalMBytes(), "M");
+		}
+
+		void getFree(char* free)
+		{
+			if (this->getFreeGBytes() > 0) {
+				sprintf(free, "%ld%s", this->getFreeGBytes(), "G");
+				return;
+			}
+
+			sprintf(free, "%ld%s", this->getFreeMBytes(), "M");
+		}
+
+		void getUsed(char* used)
+		{
+			if (this->getUsedGBytes() > 0) {
+				sprintf(used, "%ld%s", this->getUsedGBytes(), "G");
+				return;
+			}
+
+			sprintf(used, "%ld%s", this->getUsedMBytes(), "M");
+		}
 };
 
 

@@ -3,15 +3,15 @@
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:334:11:std::function<void(const char*, long unsigned int, long unsigned int)>::~function()	1
 ../App/storage.cpp:29:3:RecordSynchronizer::RecordSynchronizer(const char*, std::function<void(const char*, long unsigned int, long unsigned int)>)	6
 ../App/storage.cpp:53:3:RecordSynchronizer::~RecordSynchronizer()	2
-../App/storage.cpp:81:8:void RecordSynchronizer::syncRecord()	8
-../App/storage.cpp:139:8:void RecordSynchronizer::readSyncProgressFromSyncLog()	4
-../App/storage.cpp:220:8:void RecordSynchronizer::sendRecordPackage(const char*)	1
-../App/storage.cpp:235:8:void RecordSynchronizer::saveSyncProgress()	2
-../App/storage.cpp:255:7:void Storage::openGpsDateStorage(const char*)	1
-../App/storage.cpp:271:7:void Storage::closeGpsDateStorage()	1
-../App/storage.cpp:281:6:void Storage::writeGpsData(const char*)	3
-../App/storage.cpp:301:6:void Storage::syncRecord(const char*, std::function<void(const char*, long unsigned int, long unsigned int)>)	1
-../App/storage.cpp:310:6:bool Storage::findRecordToSync(char*)	14
+../App/storage.cpp:89:8:void RecordSynchronizer::syncRecord()	8
+../App/storage.cpp:147:8:void RecordSynchronizer::readSyncProgressFromSyncLog()	4
+../App/storage.cpp:228:8:void RecordSynchronizer::sendRecordPackage(const char*)	1
+../App/storage.cpp:243:8:void RecordSynchronizer::saveSyncProgress()	2
+../App/storage.cpp:263:7:void Storage::openGpsDateStorage(const char*)	1
+../App/storage.cpp:279:7:void Storage::closeGpsDateStorage()	1
+../App/storage.cpp:289:6:void Storage::writeGpsData(const char*)	3
+../App/storage.cpp:309:6:void Storage::syncRecord(const char*, std::function<void(const char*, long unsigned int, long unsigned int)>)	1
+../App/storage.cpp:318:6:bool Storage::findRecordToSync(char*)	14
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:239:5:constexpr std::_Function_base::_Function_base()	1
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:368:7:)>::function() [with _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	1
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:469:7:)>&) [with _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	1

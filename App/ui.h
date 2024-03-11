@@ -9,6 +9,7 @@
 #include "gps_parser.h"
 #include "sdcard_status.h"
 #include <functional>
+#include "app.class.h"
 
 class UI: public GpsDataChangeListener
 {
@@ -17,33 +18,27 @@ class UI: public GpsDataChangeListener
 		const uint8_t SCREEN_SYNC_GPS = 1;
 		const uint8_t SCREEN_RECORD_GPS = 2;
 		const uint8_t SCREEN_SYNC_GPS_FINISH = 3;
+		const uint8_t SCREEN_INFO = 4;
 
 		uint8_t searchGpsProgressCounter = 0;
 
-		uint8_t screens[4] = {SCREEN_MENU, SCREEN_SYNC_GPS, SCREEN_RECORD_GPS, SCREEN_SYNC_GPS_FINISH};
-		uint8_t screensNumber = 4;
+		uint8_t screens[5] = {SCREEN_MENU, SCREEN_SYNC_GPS, SCREEN_RECORD_GPS, SCREEN_SYNC_GPS_FINISH, SCREEN_INFO};
+		uint8_t screensNumber = 5;
 		uint8_t activeScreenNumber = 0;
 
-		char menuItems[3][18] = {"Record GPS", "Sync GPS", "Record env"};
-		uint8_t menuItemsNumber = 3;
+		char menuItems[4][18] = {"Record GPS", "Sync GPS", "Record env", "Info"};
+		uint8_t menuItemsNumber = 4;
 		uint8_t activeMenuItemNumber = 0;
 
 		uint8_t exitScreenPushButtonCounter = 0;
 
-		std::function<void()> startGpsDataRecordingFunc;
-		std::function<void()> stopGpsDataRecordingFunc;
-		std::function<void()> startSyncGpsRecordsFunc;
+		App* app;
 	public:
-		UI(
-			std::function<void()> startGpsDataRecordingFunc,
-			std::function<void()> stopGpsDataRecordingFunc,
-			std::function<void()> startSyncGpsRecordsFunc
-		);
-		void init();
+		UI(App* app);
+		void start();
 		void printError(const char* error);
 		void onGpsDataChange(GpsData*);
 		void refreshGpsStatus(GpsStatus gpsStatus);
-		void refreshStorageData(SDCardStatus* sdCardStatus);
 		void showGpsRecordingScreen();
 		void showMenuScreen();
 		void moveButtonPressed();
@@ -57,6 +52,7 @@ class UI: public GpsDataChangeListener
 		void showMenuItem(uint8_t menuItemNumber);
 		void refreshGpsData(GpsData* gpsData);
 		void refreshGpsRecordingScreenStopButton();
+		void showInfoScreen(SDCardStatus sdCardStatus);
 };
 
 #endif /* __UI_H */

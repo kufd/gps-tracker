@@ -70,10 +70,18 @@ class RecordSynchronizer
 				char filenameToDelete[50];
 
 				sprintf(filenameToDelete, "/%s", recordFileName);
-				f_unlink(filenameToDelete);
+				res = f_unlink(filenameToDelete);
+				if(res != FR_OK)
+				{
+					throw "Cannot delete record file";
+				}
 
 				sprintf(filenameToDelete, "/%s", recordSyncLogFileName);
-				f_unlink(filenameToDelete);
+				res = f_unlink(filenameToDelete);
+				if(res != FR_OK)
+				{
+					throw "Cannot delete record sync log file";
+				}
 			}
 
 			//ADD LOGS
@@ -224,7 +232,7 @@ class RecordSynchronizer
 			syncBufferUsedSize = 0;
 
 			char syncPacket[strlen(syncBuffer)+100];
-			sprintf(syncPacket, "%s,%d,%ld\n%s", recordName, syncProgressPackets, syncProgressBytes, syncBuffer);
+			sprintf(syncPacket, "%s,%d,%ld,%ld\n%s", recordName, syncProgressPackets, syncProgressBytes, syncTotalBytes, syncBuffer);
 
 			//send packet
 			sendPacketToRemoteFunc(syncPacket, syncTotalBytes, syncProgressBytes);

@@ -1,4 +1,7 @@
+"./App/app.class.o"
 "./App/app.o"
+"./App/circular_buffer.class.o"
+"./App/config.class.o"
 "./App/gps_parser.o"
 "./App/logger.o"
 "./App/storage.o"

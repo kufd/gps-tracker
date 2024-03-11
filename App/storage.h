@@ -2,8 +2,8 @@
 #define __STORAGE_H
 
 #include "main.h"
-#include <functional>
 #include "fatfs.h"
+#include <functional>
 
 class Storage
 {

@@ -1,18 +1,12 @@
 #include "ui.h"
 #include <string.h>
 
-UI::UI(
-	std::function<void()> startGpsDataRecordingFunc,
-	std::function<void()> stopGpsDataRecordingFunc,
-	std::function<void()> startSyncGpsRecordsFunc
-)
+UI::UI(App* app)
 {
-	this->startGpsDataRecordingFunc = startGpsDataRecordingFunc;
-	this->stopGpsDataRecordingFunc = stopGpsDataRecordingFunc;
-	this->startSyncGpsRecordsFunc = startSyncGpsRecordsFunc;
+	this->app = app;
 }
 
-void UI::init()
+void UI::start()
 {
 	DEV_Module_Init();
 	LCD_2IN_SetBackLight(100);
@@ -23,6 +17,8 @@ void UI::init()
 
 	Paint_SetClearFuntion(LCD_2IN_Clear);
 	Paint_SetDisplayFuntion(LCD_2IN_DrawPaint);
+
+	showMenuScreen();
 }
 
 void UI::selectButtonPressed()
@@ -31,7 +27,7 @@ void UI::selectButtonPressed()
 	{
 		if (activeMenuItemNumber == 0)
 		{
-			startGpsDataRecordingFunc();
+			this->app->startGpsDataRecording();
 
 			activeScreenNumber = SCREEN_RECORD_GPS;
 			showGpsRecordingScreen();
@@ -40,9 +36,27 @@ void UI::selectButtonPressed()
 		if (activeMenuItemNumber == 1)
 		{
 			activeScreenNumber = SCREEN_SYNC_GPS;
+
 			showSyncGpsRecordsScreen();
 
-			startSyncGpsRecordsFunc();
+			UI* ui = this;
+			app->syncGpsRecords(
+				[ui](const char* recordName){
+					ui->syncGpsRecordsScreenRefreshRecordName(recordName);
+				},
+				[ui](uint8_t progressPercent){
+					ui->syncGpsRecordsScreenRefreshProgress(progressPercent);
+				},
+				[ui](){
+					ui->showSyncGpsRecordsScreenFinishScreen();
+				}
+			);
+		}
+
+		if (activeMenuItemNumber == 3)
+		{
+			activeScreenNumber = SCREEN_INFO;
+			showInfoScreen(this->app->getSDCardStatus());
 		}
 	}
 
@@ -71,7 +85,7 @@ void UI::moveButtonPressed()
 
 		if (exitScreenPushButtonCounter >= 3)
 		{
-			stopGpsDataRecordingFunc();
+			app->stopGpsDataRecording();
 
 			exitScreenPushButtonCounter = 0;
 			activeScreenNumber = SCREEN_MENU;
@@ -84,6 +98,14 @@ void UI::moveButtonPressed()
 	}
 
 	if (activeScreenNumber == SCREEN_SYNC_GPS_FINISH)
+	{
+		showMenuScreen();
+		activeScreenNumber = SCREEN_MENU; //TODO set in showMenuScreen ??
+
+		return;
+	}
+
+	if (activeScreenNumber == SCREEN_INFO)
 	{
 		showMenuScreen();
 		activeScreenNumber = SCREEN_MENU; //TODO set in showMenuScreen ??
@@ -107,6 +129,34 @@ void UI::showMenuItem(uint8_t menuItemNumber)
 	Paint_DrawString_EN (x, y, menuItems[menuItemNumber], &Font24, BLACK, menuItemNumber == activeMenuItemNumber ? GREEN : WHITE);
 }
 
+
+//========InfoScreen============
+void UI::showInfoScreen(SDCardStatus sdCardStatus)
+{
+	char outputBuffer[40];
+	char size[20];
+
+	Paint_Clear(BLACK);
+
+	Paint_DrawString_EN (5, 10, "GPS tracker v0.01", &Font20, BLACK, YELLOW);
+	Paint_DrawString_EN (5, 30, "SD Card", &Font20, BLACK, YELLOW);
+
+
+	sdCardStatus.getTotal(size);
+	sprintf(outputBuffer, "Total: %s", size);
+	Paint_DrawString_EN (30, 50, outputBuffer, &Font20, BLACK, YELLOW);
+
+	sdCardStatus.getUsed(size);
+	sprintf(outputBuffer, "Used: %s", size);
+	Paint_DrawString_EN (30, 70, outputBuffer, &Font20, BLACK, YELLOW);
+
+	sdCardStatus.getFree(size);
+	sprintf(outputBuffer, "Free: %s", size);
+	Paint_DrawString_EN (30, 90, outputBuffer, &Font20, BLACK, YELLOW);
+
+	Paint_DrawString_EN (5, 210, "MENU", &Font24, BLACK, YELLOW);
+}
+//========InfoScreen============
 
 //========GpsRecordingScreen============
 void UI::showGpsRecordingScreen()
@@ -217,29 +267,3 @@ void UI::printError(const char* error)
 	Paint_DrawString_EN(5, 210, error, &Font12, RED, WHITE);
 }
 
-void UI::refreshStorageData(SDCardStatus* sdCardStatus)
-{
-	char outputBuffer[50] = "";
-	char totalUnit[2] = "G";
-	char freeUnit[2] = "G";
-	char usedUnit[2] = "G";
-	uint32_t total = sdCardStatus->getTotalGBytes();
-	uint32_t free = sdCardStatus->getFreeGBytes();
-	uint32_t used = sdCardStatus->getUsedGBytes();
-
-	if (total == 0) {
-		total = sdCardStatus->getTotalMBytes();
-		totalUnit[0] = 'M';
-	}
-	if (free == 0) {
-		free = sdCardStatus->getFreeMBytes();
-		freeUnit[0] = 'M';
-	}
-	if (used == 0) {
-		used = sdCardStatus->getUsedMBytes();
-		usedUnit[0] = 'M';
-	}
-
-	sprintf(outputBuffer, "%d%s/%d%s/%d%s", total, totalUnit, free, freeUnit, used, usedUnit);
-	Paint_DrawString_EN (5, 34, outputBuffer, &Font20, BLACK, YELLOW);
-}

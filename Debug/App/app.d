@@ -40,7 +40,8 @@ App/app.o: ../App/app.cpp ../App/logger.h ../FATFS/App/fatfs.h \
  .././LcdDriver/DEV_Config.h .././LcdDriver/Debug.h \
  .././LcdDriver/DEV_Config.h .././LcdDriver/GUI_Paint.h \
  .././LcdDriver/fonts.h .././LcdDriver/fonts.h ../App/sdcard_status.h \
- ../App/storage.h ../App/wifi.h
+ ../App/app.class.h ../App/storage.h ../App/wifi.h \
+ ../App/circular_buffer.class.h ../App/config.class.h
 ../App/logger.h:
 ../FATFS/App/fatfs.h:
 ../Middlewares/Third_Party/FatFs/src/ff.h:
@@ -94,5 +95,8 @@ App/app.o: ../App/app.cpp ../App/logger.h ../FATFS/App/fatfs.h \
 .././LcdDriver/fonts.h:
 .././LcdDriver/fonts.h:
 ../App/sdcard_status.h:
+../App/app.class.h:
 ../App/storage.h:
 ../App/wifi.h:
+../App/circular_buffer.class.h:
+../App/config.class.h:

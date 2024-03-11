@@ -5,7 +5,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../App/app.class.cpp \
 ../App/app.cpp \
+../App/circular_buffer.class.cpp \
+../App/config.class.cpp \
 ../App/gps_parser.cpp \
 ../App/logger.cpp \
 ../App/storage.cpp \
@@ -13,7 +16,10 @@ CPP_SRCS += \
 ../App/wifi.cpp 
 
 OBJS += \
+./App/app.class.o \
 ./App/app.o \
+./App/circular_buffer.class.o \
+./App/config.class.o \
 ./App/gps_parser.o \
 ./App/logger.o \
 ./App/storage.o \
@@ -21,7 +27,10 @@ OBJS += \
 ./App/wifi.o 
 
 CPP_DEPS += \
+./App/app.class.d \
 ./App/app.d \
+./App/circular_buffer.class.d \
+./App/config.class.d \
 ./App/gps_parser.d \
 ./App/logger.d \
 ./App/storage.d \
@@ -36,7 +45,7 @@ App/%.o App/%.su App/%.cyclo: ../App/%.cpp App/subdir.mk
 clean: clean-App
 
 clean-App:
-	-$(RM) ./App/app.cyclo ./App/app.d ./App/app.o ./App/app.su ./App/gps_parser.cyclo ./App/gps_parser.d ./App/gps_parser.o ./App/gps_parser.su ./App/logger.cyclo ./App/logger.d ./App/logger.o ./App/logger.su ./App/storage.cyclo ./App/storage.d ./App/storage.o ./App/storage.su ./App/ui.cyclo ./App/ui.d ./App/ui.o ./App/ui.su ./App/wifi.cyclo ./App/wifi.d ./App/wifi.o ./App/wifi.su
+	-$(RM) ./App/app.class.cyclo ./App/app.class.d ./App/app.class.o ./App/app.class.su ./App/app.cyclo ./App/app.d ./App/app.o ./App/app.su ./App/circular_buffer.class.cyclo ./App/circular_buffer.class.d ./App/circular_buffer.class.o ./App/circular_buffer.class.su ./App/config.class.cyclo ./App/config.class.d ./App/config.class.o ./App/config.class.su ./App/gps_parser.cyclo ./App/gps_parser.d ./App/gps_parser.o ./App/gps_parser.su ./App/logger.cyclo ./App/logger.d ./App/logger.o ./App/logger.su ./App/storage.cyclo ./App/storage.d ./App/storage.o ./App/storage.su ./App/ui.cyclo ./App/ui.d ./App/ui.o ./App/ui.su ./App/wifi.cyclo ./App/wifi.d ./App/wifi.o ./App/wifi.su
 
 .PHONY: clean-App
 
