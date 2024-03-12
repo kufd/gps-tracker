@@ -1,0 +1,8 @@
+../App/gps_record.cpp:6:1:GpsRecord::GpsRecord(const char*)	1
+../App/gps_record.cpp:23:1:GpsRecord::~GpsRecord()	2
+../App/gps_record.cpp:33:6:void GpsRecord::write(GpsData&)	2
+../App/gps_record.cpp:66:10:uint32_t GpsRecord::read(char*, uint32_t, uint32_t)	1
+../App/gps_record.cpp:89:6:void GpsRecord::remove()	1
+../App/gps_record.cpp:110:10:uint32_t GpsRecord::size()	1
+../App/gps_record.cpp:115:6:void GpsRecord::closeFile()	1
+../App/gps_record.cpp:126:6:static bool GpsRecord::findRecordToSync(char*)	14

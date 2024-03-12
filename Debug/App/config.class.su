@@ -1,0 +1,4 @@
+../App/config.class.cpp:5:13:const char* Config::getWifiSsid()	16	static
+../App/config.class.cpp:10:13:const char* Config::getWifiPassword()	16	static
+../App/config.class.cpp:15:6:void Config::read()	4280	dynamic
+../App/config.class.cpp:106:6:void Config::initConfig()	16	static

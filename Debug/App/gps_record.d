@@ -1,5 +1,5 @@
-App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+App/gps_record.o: ../App/gps_record.cpp ../App/gps_record.h \
+ ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -30,20 +30,14 @@ App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- .././LcdDriver/LCD_2inch.h .././LcdDriver/DEV_Config.h \
- .././LcdDriver/Debug.h .././LcdDriver/DEV_Config.h \
- .././LcdDriver/GUI_Paint.h .././LcdDriver/fonts.h .././LcdDriver/fonts.h \
- ../App/gps_parser.h ../App/sdcard_status.h ../App/app.class.h \
- ../App/gps_record.h ../FATFS/App/fatfs.h \
- ../Middlewares/Third_Party/FatFs/src/ff.h \
+ ../FATFS/App/fatfs.h ../Middlewares/Third_Party/FatFs/src/ff.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
  ../FATFS/Target/bsp_driver_sd.h \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/sd_diskio.h \
- ../App/common.h ../App/logger.h ../App/app.h ../App/wifi.h \
- ../App/circular_buffer.class.h ../App/config.class.h
-../App/ui.h:
+ ../App/common.h ../App/gps_parser.h
+../App/gps_record.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -76,17 +70,6 @@ App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-.././LcdDriver/LCD_2inch.h:
-.././LcdDriver/DEV_Config.h:
-.././LcdDriver/Debug.h:
-.././LcdDriver/DEV_Config.h:
-.././LcdDriver/GUI_Paint.h:
-.././LcdDriver/fonts.h:
-.././LcdDriver/fonts.h:
-../App/gps_parser.h:
-../App/sdcard_status.h:
-../App/app.class.h:
-../App/gps_record.h:
 ../FATFS/App/fatfs.h:
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 ../Middlewares/Third_Party/FatFs/src/integer.h:
@@ -97,8 +80,4 @@ App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 ../FATFS/Target/sd_diskio.h:
 ../App/common.h:
-../App/logger.h:
-../App/app.h:
-../App/wifi.h:
-../App/circular_buffer.class.h:
-../App/config.class.h:
+../App/gps_parser.h:

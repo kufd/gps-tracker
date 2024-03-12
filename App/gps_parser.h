@@ -41,7 +41,7 @@ struct GpsData {
 class GpsDataChangeListener
 {
 	public:
-		virtual void onGpsDataChange(GpsData *gpsData) = 0;
+		virtual void onGpsDataChange(GpsData &gpsData) = 0;
 };
 
 class GpsParser

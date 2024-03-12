@@ -23,6 +23,7 @@ void UI::start()
 
 void UI::selectButtonPressed()
 {
+	//TODO polymorphism
 	if (activeScreenNumber == SCREEN_MENU)
 	{
 		if (activeMenuItemNumber == 0)
@@ -205,24 +206,24 @@ void UI::refreshGpsStatus(GpsStatus gpsStatus)
 	prevGpsStatus = gpsStatus;
 }
 
-void UI::refreshGpsData(GpsData* gpsData)
+void UI::refreshGpsData(GpsData &gpsData)
 {
 	char outputBuffer[50];
 
-	Paint_DrawString_EN (5, 54, gpsData->dateUtc, &Font20, BLACK, YELLOW);
-	Paint_DrawString_EN (155, 54, gpsData->timeUtc, &Font20, BLACK, YELLOW);
+	Paint_DrawString_EN (5, 54, gpsData.dateUtc, &Font20, BLACK, YELLOW);
+	Paint_DrawString_EN (155, 54, gpsData.timeUtc, &Font20, BLACK, YELLOW);
 
 	Paint_DrawString_EN (5, 78, "long:", &Font20, BLACK, YELLOW);
 	Paint_DrawString_EN (5, 102, "lat:", &Font20, BLACK, YELLOW);
 
-	sprintf(outputBuffer, "%f    ", gpsData->longitude);
+	sprintf(outputBuffer, "%f    ", gpsData.longitude);
 	Paint_DrawString_EN (80, 78, outputBuffer, &Font20, BLACK, YELLOW);
 
-	sprintf(outputBuffer, "%f    ", gpsData->latitude);
+	sprintf(outputBuffer, "%f    ", gpsData.latitude);
 	Paint_DrawString_EN (80, 102, outputBuffer, &Font20, BLACK, YELLOW);
 }
 
-void UI::onGpsDataChange(GpsData* gpsData)
+void UI::onGpsDataChange(GpsData &gpsData)
 {
 	refreshGpsData(gpsData);
 }

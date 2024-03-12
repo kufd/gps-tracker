@@ -1,4 +1,5 @@
-App/storage.o: ../App/storage.cpp ../App/storage.h ../Core/Inc/main.h \
+App/app.class.o: ../App/app.class.cpp ../App/app.class.h \
+ ../App/gps_record.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -35,8 +36,12 @@ App/storage.o: ../App/storage.cpp ../App/storage.h ../Core/Inc/main.h \
  ../FATFS/Target/bsp_driver_sd.h \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
- ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/sd_diskio.h
-../App/storage.h:
+ ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/sd_diskio.h \
+ ../App/common.h ../App/gps_parser.h ../App/logger.h ../App/app.h \
+ ../App/wifi.h ../App/sdcard_status.h ../App/circular_buffer.class.h \
+ ../App/config.class.h ../App/gps_record_synchronizer.class.h
+../App/app.class.h:
+../App/gps_record.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -78,3 +83,12 @@ App/storage.o: ../App/storage.cpp ../App/storage.h ../Core/Inc/main.h \
 ../Middlewares/Third_Party/FatFs/src/diskio.h:
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 ../FATFS/Target/sd_diskio.h:
+../App/common.h:
+../App/gps_parser.h:
+../App/logger.h:
+../App/app.h:
+../App/wifi.h:
+../App/sdcard_status.h:
+../App/circular_buffer.class.h:
+../App/config.class.h:
+../App/gps_record_synchronizer.class.h:

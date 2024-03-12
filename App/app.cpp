@@ -1,8 +1,8 @@
+#include <App/gps_record.h>
 #include "logger.h"
 #include "app.h"
 #include "gps_parser.h"
 #include "ui.h"
-#include "storage.h"
 #include "wifi.h"
 #include <string.h>
 #include <stdexcept>
@@ -29,8 +29,7 @@ void applicationMain(UART_HandleTypeDef* huartGps, UART_HandleTypeDef* huartWifi
 	huartWifiGLobal = huartWifi;
 	hdmaUsartRxWifiGlobal = hdmaUsartRxWifi;
 
-	Storage storage;
-	App app(&storage, huartWifi);
+	App app(huartWifi);
 	UI ui(&app);
 
 	wifiCircularBuffer.subscribe(&app);

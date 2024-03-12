@@ -37,7 +37,7 @@ class UI: public GpsDataChangeListener
 		UI(App* app);
 		void start();
 		void printError(const char* error);
-		void onGpsDataChange(GpsData*);
+		void onGpsDataChange(GpsData &gpsData);
 		void refreshGpsStatus(GpsStatus gpsStatus);
 		void showGpsRecordingScreen();
 		void showMenuScreen();
@@ -50,7 +50,7 @@ class UI: public GpsDataChangeListener
 		void showSyncGpsRecordsScreenFinishScreen();
 	private:
 		void showMenuItem(uint8_t menuItemNumber);
-		void refreshGpsData(GpsData* gpsData);
+		void refreshGpsData(GpsData &gpsData);
 		void refreshGpsRecordingScreenStopButton();
 		void showInfoScreen(SDCardStatus sdCardStatus);
 };

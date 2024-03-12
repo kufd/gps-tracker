@@ -236,7 +236,7 @@ void GpsParser::parseDataNmeaSentence(const char* nmeaSentence)
 			isReceivingValidData = true;
 
 			for (int i = 0; i < this->numberGpsDataChangeListeners; i++) {
-				this->gpsDataChangeListeners[i]->onGpsDataChange(&gpsData);
+				this->gpsDataChangeListeners[i]->onGpsDataChange(gpsData);
 			}
 		}
 		else

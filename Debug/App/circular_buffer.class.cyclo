@@ -1,0 +1,7 @@
+../App/circular_buffer.class.cpp:5:1:CircularBuffer::CircularBuffer(const char*, uint16_t)	1
+../App/circular_buffer.class.cpp:17:1:CircularBuffer::~CircularBuffer()	1
+../App/circular_buffer.class.cpp:22:7:char* CircularBuffer::getBuffer()	1
+../App/circular_buffer.class.cpp:27:10:uint16_t CircularBuffer::getBufferSize()	1
+../App/circular_buffer.class.cpp:32:6:void CircularBuffer::subscribe(CircularBufferSubscriber*)	1
+../App/circular_buffer.class.cpp:42:6:void CircularBuffer::notifySubscribers(const char*, uint16_t)	2
+../App/circular_buffer.class.cpp:50:6:void CircularBuffer::onDataReceived(uint16_t)	5
