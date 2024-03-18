@@ -39,7 +39,12 @@ App/app.class.o: ../App/app.class.cpp ../App/app.class.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/sd_diskio.h \
  ../App/common.h ../App/gps_parser.h ../App/logger.h ../App/app.h \
  ../App/wifi.h ../App/sdcard_status.h ../App/circular_buffer.class.h \
- ../App/config.class.h ../App/gps_record_synchronizer.class.h
+ ../App/config.class.h ../App/ui.events.dispatcher.h ../App/ui.events.h \
+ ../App/gps_record_synchronizer.class.h ../App/ui.sync_gps.screen.class.h \
+ .././LcdDriver/LCD_2inch.h .././LcdDriver/DEV_Config.h \
+ .././LcdDriver/Debug.h .././LcdDriver/DEV_Config.h \
+ .././LcdDriver/GUI_Paint.h .././LcdDriver/fonts.h .././LcdDriver/fonts.h \
+ ../App/ui.screen.class.h ../App/ui.menu.screen.class.h
 ../App/app.class.h:
 ../App/gps_record.h:
 ../Core/Inc/main.h:
@@ -91,4 +96,16 @@ App/app.class.o: ../App/app.class.cpp ../App/app.class.h \
 ../App/sdcard_status.h:
 ../App/circular_buffer.class.h:
 ../App/config.class.h:
+../App/ui.events.dispatcher.h:
+../App/ui.events.h:
 ../App/gps_record_synchronizer.class.h:
+../App/ui.sync_gps.screen.class.h:
+.././LcdDriver/LCD_2inch.h:
+.././LcdDriver/DEV_Config.h:
+.././LcdDriver/Debug.h:
+.././LcdDriver/DEV_Config.h:
+.././LcdDriver/GUI_Paint.h:
+.././LcdDriver/fonts.h:
+.././LcdDriver/fonts.h:
+../App/ui.screen.class.h:
+../App/ui.menu.screen.class.h:

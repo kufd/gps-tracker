@@ -1,0 +1,11 @@
+../App/ui.events.h:110:3:ShowScreenUiEvent::ShowScreenUiEvent(const char*)	1
+../App/ui.events.dispatcher.h:28:8:void UiEventDispatcher::dispatch(UiEvent&)	2
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	1
+../App/ui.screen.class.h:6:7:constexpr UiScreen::UiScreen()	1
+../App/ui.menu.screen.class.cpp:6:1:UiMenuScreen::UiMenuScreen(UiEventDispatcher*)	1
+../App/ui.menu.screen.class.cpp:11:6:virtual bool UiMenuScreen::matchName(const char*)	1
+../App/ui.menu.screen.class.cpp:16:6:virtual void UiMenuScreen::selectButtonPressed()	4
+../App/ui.menu.screen.class.cpp:37:6:virtual void UiMenuScreen::moveButtonPressed()	2
+../App/ui.menu.screen.class.cpp:51:6:virtual void UiMenuScreen::onUiEvent(UiEvent&)	1
+../App/ui.menu.screen.class.cpp:56:6:virtual void UiMenuScreen::show()	2
+../App/ui.menu.screen.class.cpp:63:6:void UiMenuScreen::showMenuItem(uint8_t)	2

@@ -2,7 +2,7 @@
 #include "logger.h"
 #include "app.h"
 #include "gps_parser.h"
-#include "ui.h"
+#include "ui.class.h"
 #include "wifi.h"
 #include <string.h>
 #include <stdexcept>
@@ -29,14 +29,18 @@ void applicationMain(UART_HandleTypeDef* huartGps, UART_HandleTypeDef* huartWifi
 	huartWifiGLobal = huartWifi;
 	hdmaUsartRxWifiGlobal = hdmaUsartRxWifi;
 
-	App app(huartWifi);
-	UI ui(&app);
+	UiEventDispatcher uiEventDispatcher;
+	App app(huartWifi, &uiEventDispatcher);
+	UI ui(&uiEventDispatcher);
+
+
+	uiEventDispatcher.subscribe(&app);
+	uiEventDispatcher.subscribe(&ui);
 
 	wifiCircularBuffer.subscribe(&app);
 
 	try {
 		GpsParser gpsParser;
-		gpsParser.addGpsDataChangeListener(&ui);
 		gpsParser.addGpsDataChangeListener(&app);
 
 		app.start();
@@ -81,7 +85,8 @@ void applicationMain(UART_HandleTypeDef* huartGps, UART_HandleTypeDef* huartWifi
 				HAL_UART_Receive(huartGps, (uint8_t *) GPS_BUFFER, GPS_BUFFER_SIZE-1, 100);
 				gpsParser.addData(GPS_BUFFER);
 
-				ui.refreshGpsStatus(gpsParser.getGpsStatus());
+				GpsStatusUpdateUiEvent gpsStatusUpdateUiEvent(gpsParser.getGpsStatus());
+				uiEventDispatcher.dispatch(gpsStatusUpdateUiEvent);
 			}
 		}
 	}

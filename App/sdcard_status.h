@@ -1,11 +1,6 @@
 #ifndef __SDCARD_STATUS_H
 #define __SDCARD_STATUS_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 struct SDCardStatus
 {
 	private:
@@ -82,10 +77,4 @@ struct SDCardStatus
 		}
 };
 
-
-
-#ifdef __cplusplus
-}
 #endif
-
-#endif /* __SDCARD_STATUS_H */

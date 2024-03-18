@@ -1,0 +1,13 @@
+../App/ui.events.h:28:8:bool UiEvent::matchName(UiEventName)	1
+../App/ui.events.h:121:15:const char* ShowScreenUiEvent::getScreenName()	1
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	1
+../App/ui.events.dispatcher.h:6:7:constexpr UiEventsListener::UiEventsListener()	1
+../App/ui.class.cpp:9:1:UI::UI(UiEventDispatcher*)	1
+../App/ui.class.cpp:20:1:UI::~UI()	3
+../App/ui.class.cpp:28:6:void UI::show(const char*)	2
+../App/ui.class.cpp:44:6:void UI::selectButtonPressed()	1
+../App/ui.class.cpp:49:6:void UI::moveButtonPressed()	1
+../App/ui.class.cpp:54:6:void UI::start()	1
+../App/ui.class.cpp:69:6:void UI::clear()	1
+../App/ui.class.cpp:74:6:void UI::printError(const char*)	1
+../App/ui.class.cpp:79:6:virtual void UI::onUiEvent(UiEvent&)	2

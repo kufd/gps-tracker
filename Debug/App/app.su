@@ -1,9 +1,13 @@
+../App/ui.events.h:93:3:GpsStatusUpdateUiEvent::GpsStatusUpdateUiEvent(GpsStatus)	16	static
+../App/ui.events.dispatcher.h:19:8:void UiEventDispatcher::subscribe(UiEventsListener*)	16	static
+../App/ui.events.dispatcher.h:28:8:void UiEventDispatcher::dispatch(UiEvent&)	24	static
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
 ../App/logger.h:6:7:Logger::Logger()	16	static
+../App/ui.events.dispatcher.h:12:7:UiEventDispatcher::UiEventDispatcher()	16	static
 .././App/gps_parser.h:47:7:GpsParser::GpsParser()	16	static
-../App/app.cpp:27:6:void applicationMain(UART_HandleTypeDef*, UART_HandleTypeDef*, DMA_HandleTypeDef*)	528	static
-../App/app.cpp:99:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	16	static
-../App/app.cpp:106:6:void applicationErrorHandler()	4	static
-../App/app.cpp:109:1:void __static_initialization_and_destruction_0(int, int)	16	static
-../App/app.cpp:109:1:cpp)	8	static
-../App/app.cpp:109:1:cpp)	8	static
+../App/app.cpp:27:6:void applicationMain(UART_HandleTypeDef*, UART_HandleTypeDef*, DMA_HandleTypeDef*)	504	static
+../App/app.cpp:104:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	16	static
+../App/app.cpp:111:6:void applicationErrorHandler()	4	static
+../App/app.cpp:114:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../App/app.cpp:114:1:cpp)	8	static
+../App/app.cpp:114:1:cpp)	8	static

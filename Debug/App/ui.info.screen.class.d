@@ -1,4 +1,5 @@
-App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
+App/ui.info.screen.class.o: ../App/ui.info.screen.class.cpp \
+ ../App/ui.info.screen.class.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -33,17 +34,18 @@ App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
  .././LcdDriver/LCD_2inch.h .././LcdDriver/DEV_Config.h \
  .././LcdDriver/Debug.h .././LcdDriver/DEV_Config.h \
  .././LcdDriver/GUI_Paint.h .././LcdDriver/fonts.h .././LcdDriver/fonts.h \
- ../App/gps_parser.h ../App/sdcard_status.h ../App/app.class.h \
- ../App/gps_record.h ../FATFS/App/fatfs.h \
+ ../App/app.class.h ../App/gps_record.h ../FATFS/App/fatfs.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
  ../FATFS/Target/bsp_driver_sd.h \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/sd_diskio.h \
- ../App/common.h ../App/logger.h ../App/app.h ../App/wifi.h \
- ../App/circular_buffer.class.h ../App/config.class.h
-../App/ui.h:
+ ../App/common.h ../App/gps_parser.h ../App/logger.h ../App/app.h \
+ ../App/wifi.h ../App/sdcard_status.h ../App/circular_buffer.class.h \
+ ../App/config.class.h ../App/ui.events.dispatcher.h ../App/ui.events.h \
+ ../App/ui.screen.class.h ../App/ui.menu.screen.class.h
+../App/ui.info.screen.class.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -83,8 +85,6 @@ App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
 .././LcdDriver/GUI_Paint.h:
 .././LcdDriver/fonts.h:
 .././LcdDriver/fonts.h:
-../App/gps_parser.h:
-../App/sdcard_status.h:
 ../App/app.class.h:
 ../App/gps_record.h:
 ../FATFS/App/fatfs.h:
@@ -97,8 +97,14 @@ App/ui.o: ../App/ui.cpp ../App/ui.h ../Core/Inc/main.h \
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 ../FATFS/Target/sd_diskio.h:
 ../App/common.h:
+../App/gps_parser.h:
 ../App/logger.h:
 ../App/app.h:
 ../App/wifi.h:
+../App/sdcard_status.h:
 ../App/circular_buffer.class.h:
 ../App/config.class.h:
+../App/ui.events.dispatcher.h:
+../App/ui.events.h:
+../App/ui.screen.class.h:
+../App/ui.menu.screen.class.h:

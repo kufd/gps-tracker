@@ -14,8 +14,9 @@
 #include "fatfs.h"
 #include "circular_buffer.class.h"
 #include "config.class.h"
+#include "ui.events.dispatcher.h"
 
-class App: public GpsDataChangeListener, public CircularBufferSubscriber
+class App: public GpsDataChangeListener, public CircularBufferSubscriber, public UiEventsListener
 {
 	private:
 		GpsRecord *gpsRecord = NULL;
@@ -23,8 +24,9 @@ class App: public GpsDataChangeListener, public CircularBufferSubscriber
 		UART_HandleTypeDef* huartWifi;
 		Wifi *wifi = NULL;
 		Config config;
+		UiEventDispatcher *uiEventDispatcher;
 	public:
-		App(UART_HandleTypeDef* huartWifi);
+		App(UART_HandleTypeDef* huartWifi, UiEventDispatcher *uiEventDispatcher);
 		~App();
 		void start();
 		void stop();
@@ -34,14 +36,11 @@ class App: public GpsDataChangeListener, public CircularBufferSubscriber
 		bool isGpsDataRecordingStarted();
 		void startGpsDataRecording();
 		void stopGpsDataRecording();
-		void syncGpsRecords(
-			std::function<void(const char* recordName)> onRecordChanged,
-			std::function<void(uint8_t progressPercent)> onProgressChanged,
-			std::function<void()> onSyncCompleted
-		);
+		void syncGpsRecords();
 		void onReceivedDataFromWifi(const char* data, size_t size);
 		void onCircularBufferDataReceived(const char *name, const char *data, uint16_t dataSize);
 		SDCardStatus getSDCardStatus();
+		void onUiEvent(UiEvent &event);
 };
 
 #endif /* __APP_CLASS_H */

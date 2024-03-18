@@ -1,0 +1,18 @@
+/opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	1
+../App/ui.events.h:28:8:bool UiEvent::matchName(UiEventName)	1
+../App/ui.events.h:82:12:GpsData& GpsDataChangedUiEvent::getGpsData()	1
+../App/ui.events.h:98:13:GpsStatus GpsStatusUpdateUiEvent::getGpsStatus()	1
+../App/ui.events.h:110:3:ShowScreenUiEvent::ShowScreenUiEvent(const char*)	1
+../App/ui.events.h:131:3:StopGpsDataRecordingUiEvent::StopGpsDataRecordingUiEvent()	1
+../App/ui.events.h:140:3:StartGpsDataRecordingUiEvent::StartGpsDataRecordingUiEvent()	1
+../App/ui.events.dispatcher.h:28:8:void UiEventDispatcher::dispatch(UiEvent&)	2
+../App/ui.screen.class.h:6:7:constexpr UiScreen::UiScreen()	1
+../App/ui.record_gps.screen.class.cpp:4:1:UiRecordGpsScreen::UiRecordGpsScreen(UiEventDispatcher*)	1
+../App/ui.record_gps.screen.class.cpp:9:6:virtual bool UiRecordGpsScreen::matchName(const char*)	1
+../App/ui.record_gps.screen.class.cpp:14:6:virtual void UiRecordGpsScreen::selectButtonPressed()	1
+../App/ui.record_gps.screen.class.cpp:19:6:virtual void UiRecordGpsScreen::moveButtonPressed()	2
+../App/ui.record_gps.screen.class.cpp:35:6:virtual void UiRecordGpsScreen::show()	1
+../App/ui.record_gps.screen.class.cpp:43:6:virtual void UiRecordGpsScreen::onUiEvent(UiEvent&)	3
+../App/ui.record_gps.screen.class.cpp:61:6:void UiRecordGpsScreen::refreshGpsRecordingScreenStopButton()	3
+../App/ui.record_gps.screen.class.cpp:73:6:void UiRecordGpsScreen::refreshGpsStatus(GpsStatus)	6
+../App/ui.record_gps.screen.class.cpp:100:6:void UiRecordGpsScreen::refreshGpsData(GpsData&)	1

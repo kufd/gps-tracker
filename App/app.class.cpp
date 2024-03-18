@@ -1,9 +1,13 @@
 #include "app.class.h"
 #include "gps_record_synchronizer.class.h"
+#include "ui.events.h"
+#include "ui.sync_gps.screen.class.h"
+#include "ui.menu.screen.class.h"
 
-App::App(UART_HandleTypeDef* huartWifi)
+App::App(UART_HandleTypeDef* huartWifi, UiEventDispatcher *uiEventDispatcher)
 {
 	this->huartWifi = huartWifi;
+	this->uiEventDispatcher = uiEventDispatcher;
 }
 App::~App()
 {
@@ -59,6 +63,9 @@ void App::onGpsDataChange(GpsData &gpsData)
 
 
 	gpsRecord->write(gpsData);
+
+	GpsDataChangedUiEvent gpsDataChangedUiEvent(gpsData);
+	this->uiEventDispatcher->dispatch(gpsDataChangedUiEvent);
 }
 bool App::isGpsDataRecordingStarted()
 {
@@ -77,15 +84,11 @@ void App::stopGpsDataRecording()
 		delete gpsRecord;
 	}
 }
-void App::syncGpsRecords(
-	std::function<void(const char* recordName)> onRecordChanged,
-	std::function<void(uint8_t progressPercent)> onProgressChanged,
-	std::function<void()> onSyncCompleted
-)
+void App::syncGpsRecords()
 {
 	Wifi wifi;
 	this->wifi = &wifi;
-	wifi.init(huartWifi, config.getWifiSsid(), config.getWifiPassword());
+//	wifi.init(huartWifi, config.getWifiSsid(), config.getWifiPassword());
 
 	while(true)
 	{
@@ -95,22 +98,25 @@ void App::syncGpsRecords(
 			break;
 		}
 
-		onRecordChanged(recordName);
+		SyncGpsRecordStartedUiEvent syncGpsRecordStartedUiEvent(recordName);
+		uiEventDispatcher->dispatch(syncGpsRecordStartedUiEvent);
+
+		UiEventDispatcher *uiEventDispatcherClosureParam = uiEventDispatcher;
 
 		GpsRecordSynchronizer gpsRecordSynchronizer(
 			recordName,
-			[&wifi, &onProgressChanged](const char* packet, uint32_t totalBytes, uint32_t progressBytes){
+			[&wifi, &uiEventDispatcherClosureParam](const char* packet, uint32_t totalBytes, uint32_t progressBytes){
 				//TODO maybe rename method
 				wifi.sendPost(packet);
-				onProgressChanged((uint8_t)(100*(double)progressBytes/(double)totalBytes));
+
+				SyncGpsRecordProgressChangedUiEvent syncGpsRecordProgressChangedUiEvent((uint8_t)(100*(double)progressBytes/(double)totalBytes));
+				uiEventDispatcherClosureParam->dispatch(syncGpsRecordProgressChangedUiEvent);
 			}
 		);
 		gpsRecordSynchronizer.syncRecord();
 	}
 
 	this->wifi = NULL;
-
-	onSyncCompleted();
 }
 
 void App::onReceivedDataFromWifi(const char* data, size_t size)
@@ -154,4 +160,24 @@ SDCardStatus App::getSDCardStatus()
 	SDCardStatus sdCardStatus(totalMBytes, freeMBytes, usedMBytes);
 
 	return sdCardStatus;
+}
+
+void App::onUiEvent(UiEvent &event)
+{
+	if (event.matchName(UiEventName::StopGpsDataRecordingUiEventName))
+	{
+		stopGpsDataRecording();
+	}
+
+	if (event.matchName(UiEventName::StartGpsDataRecordingUiEventName))
+	{
+		startGpsDataRecording();
+	}
+
+	if (event.matchName(UiEventName::RefreshSDCardStatusUiEventName))
+	{
+		SDCardStatus sdCardStatus = getSDCardStatus();
+		SDCardStatusUiEvent sdCardStatusUiEvent(sdCardStatus);
+		uiEventDispatcher->dispatch(sdCardStatusUiEvent);
+	}
 }
