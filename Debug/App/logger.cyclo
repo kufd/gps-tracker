@@ -1,9 +1,10 @@
-../App/logger.cpp:6:6:void Logger::openFile()	1
-../App/logger.cpp:15:6:void Logger::closeFile()	1
-../App/logger.cpp:24:6:void Logger::error(const char*)	1
-../App/logger.cpp:29:6:void Logger::error(const char*, const char*)	1
-../App/logger.cpp:34:6:void Logger::debug(const char*)	1
-../App/logger.cpp:39:6:void Logger::debug(const char*, const char*)	1
-../App/logger.cpp:44:6:void Logger::info(const char*)	1
-../App/logger.cpp:49:6:void Logger::info(const char*, const char*)	1
-../App/logger.cpp:54:6:void Logger::write(const char*, const char*, const char*)	2
+../App/logger.cpp:7:1:Logger::Logger(UART_HandleTypeDef*)	1
+../App/logger.cpp:12:1:Logger::~Logger()	2
+../App/logger.cpp:26:6:void Logger::openLogFile()	1
+../App/logger.cpp:36:6:void Logger::error(const char*)	1
+../App/logger.cpp:41:6:void Logger::error(const char*, const char*)	1
+../App/logger.cpp:46:6:void Logger::debug(const char*)	1
+../App/logger.cpp:51:6:void Logger::debug(const char*, const char*)	1
+../App/logger.cpp:56:6:void Logger::info(const char*)	1
+../App/logger.cpp:61:6:void Logger::info(const char*, const char*)	1
+../App/logger.cpp:66:6:void Logger::write(const char*, const char*, const char*)	3

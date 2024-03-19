@@ -35,11 +35,6 @@ class Wifi
 		volatile uint16_t head = 0;
 
 		UART_HandleTypeDef* huart;
-
-		//for debug
-		uint16_t communicationCounter = 0;
-		char communication[10][1024];
-
 	public:
 		void init (UART_HandleTypeDef* huart, const char *ssid, const char *password);
 		bool sendPost(const char* data);

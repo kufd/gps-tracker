@@ -5,11 +5,11 @@
 ../App/wifi.cpp:65:6:bool HttpResponse::isComplete()	1
 ../App/wifi.cpp:70:6:bool HttpResponse::isValid()	3
 ../App/wifi.cpp:85:6:void HttpResponse::readChar(char)	11
-../App/wifi.cpp:133:6:void Wifi::onReceivedDataFromHuart(const char*, size_t)	4
-../App/wifi.cpp:153:6:void Wifi::resetCircleBuffer()	1
-../App/wifi.cpp:159:6:void Wifi::init(UART_HandleTypeDef*, const char*, const char*)	1
-../App/wifi.cpp:207:6:bool Wifi::waitFor(const char*)	5
+../App/wifi.cpp:133:6:void Wifi::onReceivedDataFromHuart(const char*, size_t)	3
+../App/wifi.cpp:151:6:void Wifi::resetCircleBuffer()	1
+../App/wifi.cpp:157:6:void Wifi::init(UART_HandleTypeDef*, const char*, const char*)	1
+../App/wifi.cpp:205:6:bool Wifi::waitFor(const char*)	5
 ../App/wifi.h:6:7:HttpResponse::HttpResponse()	1
-../App/wifi.cpp:238:6:bool Wifi::sendPost(const char*)	7
-../App/wifi.cpp:299:6:void Wifi::readHttpResponse(HttpResponse&)	5
-../App/wifi.cpp:332:6:void Wifi::writeToUart(const char*)	2
+../App/wifi.cpp:236:6:bool Wifi::sendPost(const char*)	7
+../App/wifi.cpp:297:6:void Wifi::readHttpResponse(HttpResponse&)	5
+../App/wifi.cpp:330:6:void Wifi::writeToUart(const char*)	1

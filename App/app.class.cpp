@@ -15,14 +15,17 @@ App::~App()
 }
 void App::start()
 {
+	logger->info("Starting GPS tracker");
+
 	mountFileSystem();
-	logger.openFile();
+	logger->openLogFile();
 	config.read();
 }
 void App::stop()
 {
 	unmountFileSystem();
-	logger.closeFile();
+
+	logger->info("Stopping GPS tracker");
 }
 void App::mountFileSystem()
 {
@@ -88,7 +91,7 @@ void App::syncGpsRecords()
 {
 	Wifi wifi;
 	this->wifi = &wifi;
-//	wifi.init(huartWifi, config.getWifiSsid(), config.getWifiPassword());
+	wifi.init(huartWifi, config.getWifiSsid(), config.getWifiPassword());
 
 	while(true)
 	{
@@ -164,6 +167,12 @@ SDCardStatus App::getSDCardStatus()
 
 void App::onUiEvent(UiEvent &event)
 {
+
+	if (event.matchName(UiEventName::StartSyncGpsRecordsUiEventName))
+	{
+		syncGpsRecords();
+	}
+
 	if (event.matchName(UiEventName::StopGpsDataRecordingUiEventName))
 	{
 		stopGpsDataRecording();

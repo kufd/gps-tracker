@@ -21,11 +21,14 @@ DMA_HandleTypeDef* hdmaUsartRxWifiGlobal;
 
 CircularBuffer wifiCircularBuffer("wifi", 512);
 
-Logger logger;
+Logger *logger;
 
 //TODO add log and debug console
-void applicationMain(UART_HandleTypeDef* huartGps, UART_HandleTypeDef* huartWifi, DMA_HandleTypeDef* hdmaUsartRxWifi)
+void applicationMain(UART_HandleTypeDef* huartGps, UART_HandleTypeDef* huartWifi, DMA_HandleTypeDef* hdmaUsartRxWifi, UART_HandleTypeDef* huartDebugConsole)
 {
+	Logger loggerInstance(huartDebugConsole);
+	logger = &loggerInstance;
+
 	huartWifiGLobal = huartWifi;
 	hdmaUsartRxWifiGlobal = hdmaUsartRxWifi;
 

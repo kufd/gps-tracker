@@ -163,7 +163,7 @@ void GpsParser::addData(const char* data)
 			bufferSize = 0;
 			memset(buffer, 0, maxBufferSize);
 
-			logger.debug("Happened buffer overflow in GpsParser");
+			logger->debug("Happened buffer overflow in GpsParser");
 		}
 	}
 }
@@ -173,11 +173,11 @@ void GpsParser::parseDataNmeaSentence(const char* nmeaSentence)
 {
 	//TODO add valid sentences percent calculation and log it
 	if (!nmeaSentenceChecksumCompare(buffer)) {
-		logger.debug("NMEA sentence received with invalid checksum", buffer);
+		logger->debug("NMEA sentence received with invalid checksum", buffer);
 		return;
 	}
 
-	logger.debug("NMEA sentence received", buffer);
+	logger->debug("NMEA sentence received", buffer);
 
 	char nmeaSentenceName[7] = {0, 0, 0, 0, 0, 0, 0};
 	strncpy(nmeaSentenceName, nmeaSentence, 6);

@@ -39,8 +39,9 @@ class App: public GpsDataChangeListener, public CircularBufferSubscriber, public
 		void syncGpsRecords();
 		void onReceivedDataFromWifi(const char* data, size_t size);
 		void onCircularBufferDataReceived(const char *name, const char *data, uint16_t dataSize);
-		SDCardStatus getSDCardStatus();
 		void onUiEvent(UiEvent &event);
+	private:
+		SDCardStatus getSDCardStatus();
 };
 
 #endif /* __APP_CLASS_H */

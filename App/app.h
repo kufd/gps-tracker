@@ -9,7 +9,7 @@ extern "C" {
 #include "main.h"
 
 
-void applicationMain(UART_HandleTypeDef* huart1, UART_HandleTypeDef* huart2, DMA_HandleTypeDef* hdma_usart2_rx);
+void applicationMain(UART_HandleTypeDef* huart1, UART_HandleTypeDef* huart2, DMA_HandleTypeDef* hdma_usart2_rx, UART_HandleTypeDef* huartDebugConsole);
 void applicationErrorHandler();
 
 

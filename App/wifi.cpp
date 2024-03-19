@@ -132,12 +132,10 @@ void HttpResponse::readChar(const char oneChar)
 
 void Wifi::onReceivedDataFromHuart(const char* data, size_t size)
 {
-	if(communicationCounter < 10)
-	{
-		memset(communication[communicationCounter], 0, 1024);
-		memcpy(communication[communicationCounter], data, size);
-	}
-	communicationCounter++;
+	char receivedDataString[size+1];
+	strncpy(receivedDataString, data, size);
+	receivedDataString[size] = '\0';
+	logger->debug("Received from WIFI module", receivedDataString);
 
 	for (size_t i=0; i<size; i++)
 	{
@@ -331,14 +329,7 @@ void Wifi::readHttpResponse(HttpResponse &httpResponse)
 
 void Wifi::writeToUart(const char* data)
 {
-	if(communicationCounter < 10)
-	{
-		memset(communication[communicationCounter], 0, 1024);
-		memcpy(communication[communicationCounter], data, strlen(data));
-	}
-	communicationCounter++;
-
-	logger.debug("Sent to WIFI module", data);
+	logger->debug("Sent to WIFI module", data);
 
 	HAL_StatusTypeDef res = HAL_UART_Transmit(huart, (uint8_t*) data, strlen(data), 500);
 
