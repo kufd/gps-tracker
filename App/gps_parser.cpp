@@ -142,9 +142,9 @@ void GpsParser::addGpsDataChangeListener(GpsDataChangeListener* gpsDataChangeLis
 	this->gpsDataChangeListeners[this->numberGpsDataChangeListeners++] = gpsDataChangeListener;
 }
 
-void GpsParser::addData(const char* data)
+void GpsParser::addData(const char* data, uint16_t dataSize)
 {
-	for (size_t i = 0; i < strlen(data); i++)
+	for (size_t i = 0; i < dataSize; i++)
 	{
 		if (data[i] == '$') {
 			isReceivingData = true;

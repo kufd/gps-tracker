@@ -10,6 +10,6 @@
 ../App/gps_parser.cpp:126:6:bool GpsParser::getIsReceivingValidData()	16	static
 ../App/gps_parser.cpp:131:6:bool GpsParser::getIsReceivingData()	16	static
 ../App/gps_parser.cpp:136:6:void GpsParser::addGpsDataChangeListener(GpsDataChangeListener*)	16	static
-../App/gps_parser.cpp:145:6:void GpsParser::addData(const char*)	24	static
+../App/gps_parser.cpp:145:6:void GpsParser::addData(const char*, uint16_t)	32	static
 ../App/gps_parser.cpp:172:6:void GpsParser::parseDataNmeaSentence(const char*)	136	dynamic
 ../App/gps_parser.cpp:249:6:bool GpsParser::nmeaSentenceChecksumCompare(const char*)	24	static

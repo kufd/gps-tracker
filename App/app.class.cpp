@@ -20,6 +20,7 @@ void App::start()
 	mountFileSystem();
 	logger->openLogFile();
 	config.read();
+	gpsParser.addGpsDataChangeListener(this);
 }
 void App::stop()
 {
@@ -137,6 +138,22 @@ void App::onCircularBufferDataReceived(const char *name, const char *data, uint1
 	if (strcmp(name, "wifi") == 0)
 	{
 		onReceivedDataFromWifi(data, dataSize);
+		return;
+	}
+
+	if (strcmp(name, "gps") == 0)
+	{
+		if (!isGpsDataRecordingStarted())
+		{
+			return;
+		}
+
+		gpsParser.addData(data, dataSize);
+
+		GpsStatusUpdateUiEvent gpsStatusUpdateUiEvent(gpsParser.getGpsStatus());
+		uiEventDispatcher->dispatch(gpsStatusUpdateUiEvent);
+
+		return;
 	}
 }
 

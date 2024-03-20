@@ -25,6 +25,7 @@ class App: public GpsDataChangeListener, public CircularBufferSubscriber, public
 		Wifi *wifi = NULL;
 		Config config;
 		UiEventDispatcher *uiEventDispatcher;
+		GpsParser gpsParser;
 	public:
 		App(UART_HandleTypeDef* huartWifi, UiEventDispatcher *uiEventDispatcher);
 		~App();

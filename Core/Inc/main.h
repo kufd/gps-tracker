@@ -61,8 +61,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define BTN_MOVE_Pin GPIO_PIN_2
 #define BTN_MOVE_GPIO_Port GPIOE
+#define BTN_MOVE_EXTI_IRQn EXTI2_IRQn
 #define BTN_SELECT_Pin GPIO_PIN_3
 #define BTN_SELECT_GPIO_Port GPIOE
+#define BTN_SELECT_EXTI_IRQn EXTI3_IRQn
 #define WIFI_TX_Pin GPIO_PIN_2
 #define WIFI_TX_GPIO_Port GPIOA
 #define WIFI_RX_Pin GPIO_PIN_3

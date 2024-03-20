@@ -59,7 +59,7 @@ class GpsParser
 		GpsDataChangeListener* gpsDataChangeListeners[maxGpsDataChangeListeners];
 		uint8_t numberGpsDataChangeListeners = 0;
 	public:
-		void addData(const char* data);
+		void addData(const char* data, uint16_t dataSize);
 		bool getIsReceivingValidData();
 		bool getIsReceivingData();
 		void addGpsDataChangeListener(GpsDataChangeListener* gpsDataChangeListener);

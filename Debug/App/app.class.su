@@ -9,30 +9,32 @@
 ../App/ui.events.h:61:3:SyncGpsRecordProgressChangedUiEvent::SyncGpsRecordProgressChangedUiEvent(uint8_t)	16	static
 ../App/gps_parser.h:15:8:constexpr GpsData::GpsData()	16	static
 ../App/ui.events.h:77:3:GpsDataChangedUiEvent::GpsDataChangedUiEvent(GpsData&)	24	static
+../App/ui.events.h:93:3:GpsStatusUpdateUiEvent::GpsStatusUpdateUiEvent(GpsStatus)	16	static
 ../App/ui.events.h:169:3:SDCardStatusUiEvent::SDCardStatusUiEvent(SDCardStatus&)	16	static
 ../App/ui.events.dispatcher.h:28:8:void UiEventDispatcher::dispatch(UiEvent&)	24	static
 ../App/gps_parser.h:41:7:constexpr GpsDataChangeListener::GpsDataChangeListener()	16	static
 ../App/circular_buffer.class.h:6:7:constexpr CircularBufferSubscriber::CircularBufferSubscriber()	16	static
 ../App/ui.events.dispatcher.h:6:7:constexpr UiEventsListener::UiEventsListener()	16	static
 ../App/config.class.h:6:7:Config::Config()	24	static
+../App/gps_parser.h:47:7:GpsParser::GpsParser()	16	static
 ../App/app.class.cpp:7:1:App::App(UART_HandleTypeDef*, UiEventDispatcher*)	24	static
 ../App/app.class.cpp:12:1:App::~App()	16	static
 ../App/app.class.cpp:16:6:void App::start()	16	static
-../App/app.class.cpp:24:6:void App::stop()	16	static
-../App/app.class.cpp:30:6:void App::mountFileSystem()	24	static
-../App/app.class.cpp:44:6:void App::unmountFileSystem()	24	static
-../App/app.class.cpp:52:6:virtual void App::onGpsDataChange(GpsData&)	120	static
-../App/app.class.cpp:73:6:bool App::isGpsDataRecordingStarted()	16	static
-../App/app.class.cpp:77:6:void App::startGpsDataRecording()	16	static
-../App/app.class.cpp:81:6:void App::stopGpsDataRecording()	24	static
+../App/app.class.cpp:25:6:void App::stop()	16	static
+../App/app.class.cpp:31:6:void App::mountFileSystem()	24	static
+../App/app.class.cpp:45:6:void App::unmountFileSystem()	24	static
+../App/app.class.cpp:53:6:virtual void App::onGpsDataChange(GpsData&)	120	static
+../App/app.class.cpp:74:6:bool App::isGpsDataRecordingStarted()	16	static
+../App/app.class.cpp:78:6:void App::startGpsDataRecording()	16	static
+../App/app.class.cpp:82:6:void App::stopGpsDataRecording()	24	static
 ../App/wifi.h:29:7:Wifi::Wifi()	16	static
-../App/app.class.cpp:111:4:App::syncGpsRecords()::<lambda(const char*, uint32_t, uint32_t)>	40	static
+../App/app.class.cpp:112:4:App::syncGpsRecords()::<lambda(const char*, uint32_t, uint32_t)>	40	static
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:334:11:std::function<void(const char*, long unsigned int, long unsigned int)>::~function()	16	static
-../App/app.class.cpp:90:6:void App::syncGpsRecords()	6080	static
-../App/app.class.cpp:125:6:void App::onReceivedDataFromWifi(const char*, size_t)	24	static
-../App/app.class.cpp:135:6:virtual void App::onCircularBufferDataReceived(const char*, const char*, uint16_t)	24	static
-../App/app.class.cpp:143:14:SDCardStatus App::getSDCardStatus()	144	static
-../App/app.class.cpp:168:6:virtual void App::onUiEvent(UiEvent&)	48	static
+../App/app.class.cpp:91:6:void App::syncGpsRecords()	6080	static
+../App/app.class.cpp:126:6:void App::onReceivedDataFromWifi(const char*, size_t)	24	static
+../App/app.class.cpp:136:6:virtual void App::onCircularBufferDataReceived(const char*, const char*, uint16_t)	32	static
+../App/app.class.cpp:160:14:SDCardStatus App::getSDCardStatus()	144	static
+../App/app.class.cpp:185:6:virtual void App::onUiEvent(UiEvent&)	48	static
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:239:5:constexpr std::_Function_base::_Function_base()	16	static
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:435:2:)>::function(_Functor&&) [with _Functor = App::syncGpsRecords()::<lambda(const char*, uint32_t, uint32_t)>; _Constraints = void; _Res = void; _ArgTypes = {const char*, long unsigned int, long unsigned int}]	24	static
 /opt/st/stm32cubeide_1.14.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.100.202309141235/tools/arm-none-eabi/include/c++/11.3.1/bits/std_function.h:235:4:static bool std::_Function_base::_Base_manager<_Functor>::_M_not_empty_function(const _Tp&) [with _Tp = App::syncGpsRecords()::<lambda(const char*, uint32_t, uint32_t)>; _Functor = App::syncGpsRecords()::<lambda(const char*, uint32_t, uint32_t)>]	16	static
